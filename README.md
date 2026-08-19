@@ -9,3 +9,4 @@
 - [`docs/reels/RULES_IMPORT.md`](docs/reels/RULES_IMPORT.md) — ai-video-studio 규칙 반입 안내
 - [`docs/reels/IG_API_SETUP.md`](docs/reels/IG_API_SETUP.md) — 인스타 API 설정 (댓글 답글·인사이트 자동화)
 - [`tools/ig_post.py`](tools/ig_post.py) — 댓글 조회·답글 게시·인사이트 수집 CLI
+- [`tools/make_story_image.py`](tools/make_story_image.py) — 차량 화면 사진 → 9:16 스토리 이미지 (EXIF 제거)
