@@ -28,7 +28,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 W, H = 1080, 1920
 BG = (10, 10, 12)
@@ -63,6 +63,25 @@ def parse_box(value: str) -> tuple[int, int, int, int]:
     return tuple(parts)  # type: ignore[return-value]
 
 
+def mask_regions(image, boxes):
+    """지정 영역을 판독 불가하게 만든다.
+
+    가우시안 블러만으로는 큰 글자가 흐릿하게 남을 수 있어, 먼저 극단적으로
+    축소·확대해 모자이크로 뭉갠 뒤 블러로 경계를 없앤다.
+    """
+    for box in boxes:
+        left, top, right, bottom = box
+        region = image.crop(box)
+        if region.width < 2 or region.height < 2:
+            continue
+        small = region.resize(
+            (max(1, region.width // 20), max(1, region.height // 20)), Image.BILINEAR
+        )
+        region = small.resize(region.size, Image.NEAREST).filter(ImageFilter.GaussianBlur(12))
+        image.paste(region, (left, top))
+    return image
+
+
 def draw_block(draw, font_path, lines, top):
     """lines: [(text, size, fill, stroke, gap_after)] — 가운데 정렬로 쌓는다."""
     y = top
@@ -95,6 +114,9 @@ def probe(src: str) -> int:
 def build(args) -> int:
     font_path = resolve_font()
     src = ImageOps.exif_transpose(Image.open(args.src))
+    if args.blur_box:
+        # 크롭 전에 원본 좌표계에서 가린다 (--probe 좌표를 그대로 쓸 수 있다)
+        src = mask_regions(src.copy(), args.blur_box)
     canvas = Image.new("RGB", (W, H), BG)
 
     context_box = args.context_box or (0, 0, src.width, src.height)
@@ -153,6 +175,13 @@ def main(argv=None) -> int:
     parser.add_argument("--probe", action="store_true", help="좌표 잡기용 미리보기만 생성")
     parser.add_argument("--context-box", type=parse_box, help="사진에서 사용할 영역 left,top,right,bottom")
     parser.add_argument("--popup-box", type=parse_box, help="확대 삽입할 영역 left,top,right,bottom")
+    parser.add_argument(
+        "--blur-box",
+        type=parse_box,
+        action="append",
+        default=[],
+        help="가릴 영역 left,top,right,bottom (여러 번 지정 가능). 원본 좌표계 기준",
+    )
     parser.add_argument("--hook", action="append", default=[], help="상단 훅 (여러 번 지정 = 여러 줄)")
     parser.add_argument("--quote", help="본문 위에 붙는 작은 인용/라벨 한 줄")
     parser.add_argument("--body", action="append", default=[], help="하단 본문 (여러 번 지정 = 여러 줄)")
