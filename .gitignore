@@ -1,0 +1,14 @@
+# 자격 증명 — 절대 커밋하지 않는다
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 영상 산출물은 저장소에 넣지 않는다 (용량)
+outputs/
+*.mp4
+*.mov
