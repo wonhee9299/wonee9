@@ -8,6 +8,7 @@
 - [`docs/reels/ACCOUNT_ANALYSIS.md`](docs/reels/ACCOUNT_ANALYSIS.md) — @wonhee929 계정 분석
 - [`docs/reels/RULES_IMPORT.md`](docs/reels/RULES_IMPORT.md) — ai-video-studio 규칙 반입 안내
 - [`docs/reels/REMOTE_CONTROL_SETUP.md`](docs/reels/REMOTE_CONTROL_SETUP.md) — 폰에서 PC로 명령하는 설정 (게시·편집은 PC에서)
+- [`docs/reels/DISPATCH.md`](docs/reels/DISPATCH.md) — 폰 → 클라우드 → PC 작업 위임 프로토콜
 - [`docs/reels/IG_API_SETUP.md`](docs/reels/IG_API_SETUP.md) — 인스타 API 설정 (댓글 답글·인사이트 자동화)
 - [`tools/ig_post.py`](tools/ig_post.py) — 댓글 조회·답글 게시·인사이트 수집 CLI
 - [`tools/ig_web_reply.py`](tools/ig_web_reply.py) — 로컬 PC에서 웹으로 댓글 답글 게시 (로그인 세션 재사용)
