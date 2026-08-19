@@ -24,17 +24,20 @@
 인스타 게시, 원본 영상 편집, NAS 접근은 **PC의 Remote Control 세션에서만** 가능하다.
 클라우드 세션은 매번 빈 컨테이너라 로그인된 브라우저도 원본 파일도 없다.
 
-폰에서 작업할 때는 두 가지 방식이 있다.
+### 이 저장소의 기본 작업 통로 = 위임
 
-1. **PC RC 세션을 직접 골라 명령** — 실시간으로 주고받을 때. `docs/reels/REMOTE_CONTROL_SETUP.md`
-2. **클라우드 세션에 명령하고 PC로 위임** — 던져놓고 결과를 나중에 확인할 때.
-   `docs/reels/DISPATCH.md`
+**실행이 필요한 모든 작업은 PC 세션에 위임한다.** 릴스 작업만이 아니다.
+프로토콜은 `docs/DISPATCH.md` 이며, 요약하면:
 
-### 위임받은 작업을 처리할 때 (PC 세션)
+- **클라우드 세션**: `list_sessions` 로 PC 세션(`environment_kind: bridge`)을 찾고,
+  작업서를 `handoff/inbox/` 에 커밋·푸시한 뒤 트리거로 초인종을 울린다.
+  결과는 `git fetch` 후 `handoff/results/` 에서 확인한다.
+  **결과 파일이 없으면 "진행 중"이라고만 말하고 결과를 추측해 보고하지 않는다.**
+- **PC 세션**: `git pull` → `handoff/inbox/` 의 미처리 작업 수행 →
+  결과를 `handoff/results/` 에 기록하고 **커밋·푸시**. 실패해도 반드시 남긴다.
 
-트리거로 작업을 받으면 수행 후 **결과를 `handoff/results/` 에 기록하고 커밋·푸시한다.**
-트리거는 단방향이라 이게 클라우드 세션에 결과를 알리는 유일한 방법이다.
-실패해도 반드시 남긴다. 형식은 `docs/reels/DISPATCH.md` 참고.
+실시간으로 주고받아야 하는 작업은 위임하지 말고, 폰에서 PC 세션을 직접 골라 명령한다.
+연결 설정은 `docs/reels/REMOTE_CONTROL_SETUP.md`.
 
 ## 작업 방식
 
