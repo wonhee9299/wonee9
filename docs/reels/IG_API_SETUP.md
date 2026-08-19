@@ -64,3 +64,47 @@ python tools/ig_post.py insights --media <media-id>
 - 토큰이 노출됐다고 판단되면 Meta 앱 대시보드에서 즉시 무효화한다.
 - `reply` 는 항상 `--dry-run` 으로 문안을 먼저 확인한 뒤 게시한다.
   게시 전 사용자 승인은 `CLAUDE.md` 의 작업 방식 규칙을 따른다.
+
+---
+
+## 로컬 실행 경로 (코덱스가 되던 이유)
+
+로컬 코덱스가 인스타에 올릴 수 있었던 이유는 계정 권한이 아니라 **실행 위치**다.
+
+| | 로컬 PC | 클라우드 세션 |
+|---|---|---|
+| 브라우저 로그인 세션 | 이미 로그인됨 | 없음 |
+| IP | 집 네트워크 | 데이터센터 — 인스타 보안 체크포인트 대상 |
+
+같은 일을 하려면 **PC에서 Claude Code 로 이 저장소를 열고** `tools/ig_web_reply.py` 를 쓴다.
+비밀번호는 스크립트에 넣지 않는다. 사람이 브라우저에서 한 번 로그인하면
+`.ig-profile/` 에 세션이 남아 이후 실행은 자동으로 동작한다 (`.gitignore` 처리됨).
+
+```bash
+pip install playwright && playwright install chromium
+
+python tools/ig_web_reply.py --login          # 1회, 직접 로그인
+
+python tools/ig_web_reply.py \
+    --url https://www.instagram.com/wonhee929/reel/DcM0pGiPsN-/ \
+    --reply-to shrah84 --message-file draft.txt --dry-run   # 대상 확인
+python tools/ig_web_reply.py \
+    --url https://www.instagram.com/wonhee929/reel/DcM0pGiPsN-/ \
+    --reply-to shrah84 --message-file draft.txt             # 게시
+```
+
+실패하면 `.ig-shots/` 에 화면을 남긴다. 인스타 웹 DOM 이 자주 바뀌므로
+셀렉터가 깨지면 그 스크린샷을 보고 수정한다.
+
+### 경로별 가능 범위
+
+| 작업 | Graph API (어디서든) | 로컬 웹 자동화 | 폰 앱 |
+|---|---|---|---|
+| 댓글 답글 | ✅ | ✅ | ✅ |
+| 릴스·피드 게시 | ✅ (공개 URL 필요) | ✅ | ✅ |
+| 인사이트 조회 | ✅ | — | ✅ |
+| 스토리 이미지 업로드 | ✅ | 제한적 | ✅ |
+| **스토리 @멘션·링크 스티커** | ❌ | ❌ | **✅ 유일** |
+
+> 스토리 스티커는 폰 앱 전용 기능이다. 토큰이나 브라우저 자동화로는 우회할 수 없다.
+> 자동화 게시는 인스타그램 이용약관상 제약이 있을 수 있으므로 본인 계정·본인 콘텐츠에만 사용한다.

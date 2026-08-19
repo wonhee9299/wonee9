@@ -12,3 +12,7 @@ venv/
 outputs/
 *.mp4
 *.mov
+
+# 인스타 웹 자동화 로컬 산출물 (로그인 세션·스크린샷)
+.ig-profile/
+.ig-shots/
