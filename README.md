@@ -2,6 +2,7 @@
 
 인스타그램 릴스 프로젝트 "릴스3" 작업 저장소.
 
+- [`docs/AGENT_POLICY.md`](docs/AGENT_POLICY.md) — 에이전트 운용 방침 (전용 머신 · 자율성 범위)
 - [`docs/DISPATCH.md`](docs/DISPATCH.md) — **모든 작업의 기본 통로**: 폰 → 클라우드 → PC 위임
 - [`CLAUDE.md`](CLAUDE.md) — 프로젝트 컨텍스트 · 제작 기준 (세션 시작 시 자동 로드)
 - [`docs/reels/WORKFLOW.md`](docs/reels/WORKFLOW.md) — 제작 7단계 · 게시 전 게이트
