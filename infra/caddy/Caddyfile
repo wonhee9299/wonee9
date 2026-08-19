@@ -1,0 +1,68 @@
+# Caddy 설정 - 인프라의 유일한 출입구.
+#
+# 서비스마다 포트 번호를 외우는 대신 이름으로 접근한다.
+#   http://nas.local:8080         → 서비스 목록
+#   http://status.nas.local:8080  → 상태 감시
+#   http://logs.nas.local:8080    → 컨테이너 로그
+#
+# {$VAR:기본값} 은 docker-compose 가 넘겨준 환경변수를 읽는다.
+{
+	email {$ACME_EMAIL:admin@example.com}
+	# 관리 API 는 쓰지 않으므로 닫는다.
+	admin off
+}
+
+# 공통 설정 조각. 각 사이트에서 import 로 가져다 쓴다.
+(common) {
+	encode gzip
+	header {
+		# 브라우저가 콘텐츠 종류를 멋대로 추측하지 않게 한다.
+		X-Content-Type-Options nosniff
+		# 다른 사이트가 이 페이지를 프레임에 넣지 못하게 한다.
+		X-Frame-Options SAMEORIGIN
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+	log {
+		output stdout
+		format console
+	}
+}
+
+# 컨테이너 헬스체크 전용 (컨테이너 안에서만 열리며 밖으로 공개되지 않는다).
+#
+# 호스트 이름을 요구하는 사이트로 헬스체크를 하면 안 된다. Host 헤더가 맞지
+# 않는 요청에 Caddy 는 빈 200 을 돌려주므로, 설정이 깨져도 '정상'으로 보인다.
+# 이 블록은 이 파일이 실제로 적재됐을 때만 존재하므로 거짓 통과가 없다.
+:2020 {
+	respond /healthz "ok" 200
+	respond "not found" 404
+}
+
+# 서비스 목록 페이지 (첫 화면)
+{$SITE_SCHEME:http}://{$BASE_DOMAIN:nas.local} {
+	import common
+	root * /srv
+	file_server
+}
+
+# 상태 감시 - Uptime Kuma
+{$SITE_SCHEME:http}://status.{$BASE_DOMAIN:nas.local} {
+	import common
+	reverse_proxy uptime-kuma:3001
+}
+
+# 컨테이너 로그 - Dozzle
+{$SITE_SCHEME:http}://logs.{$BASE_DOMAIN:nas.local} {
+	import common
+	reverse_proxy dozzle:8080
+}
+
+# ── 새 서비스를 추가할 때 ────────────────────────────────────────────────
+# 아래 형태를 복사해서 쓰면 된다. 서비스 이름은 docker-compose 의
+# 서비스 이름과 같아야 하고, 그 서비스가 edge 네트워크에 붙어 있어야 한다.
+#
+# {$SITE_SCHEME:http}://myapp.{$BASE_DOMAIN:nas.local} {
+# 	import common
+# 	reverse_proxy myapp:3000
+# }

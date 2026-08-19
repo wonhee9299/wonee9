@@ -1,0 +1,300 @@
+#!/usr/bin/env bash
+#
+# NAS 인프라 관리 명령. docker compose 를 감싸서 자주 쓰는 동작만 추렸다.
+#   ./infra up [프로필...]   스택 시작
+#   ./infra status           지금 뭐가 돌고 있는지
+#   ./infra doctor           설정이 올바른지 점검
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT"
+
+RED=$'\033[31m'; GREEN=$'\033[32m'; YELLOW=$'\033[33m'; DIM=$'\033[2m'; OFF=$'\033[0m'
+info()  { printf '%s\n' "$*"; }
+ok()    { printf '%s✓%s %s\n' "$GREEN" "$OFF" "$*"; }
+warn()  { printf '%s!%s %s\n' "$YELLOW" "$OFF" "$*" >&2; }
+fail()  { printf '%s✗%s %s\n' "$RED" "$OFF" "$*" >&2; }
+die()   { fail "$*"; exit 1; }
+
+# ---------------------------------------------------------------- 사전 점검
+
+compose() {
+  docker compose "$@"
+}
+
+require_docker() {
+  command -v docker >/dev/null 2>&1 || die \
+    "docker 를 찾을 수 없습니다. 시놀로지라면 패키지 센터에서 'Container Manager' 를 설치하세요."
+  docker compose version >/dev/null 2>&1 || die \
+    "docker compose 플러그인이 없습니다. Container Manager 를 최신 버전으로 올리세요."
+  docker info >/dev/null 2>&1 || die \
+    "도커 데몬에 연결할 수 없습니다. Container Manager 가 실행 중인지, 이 계정이 docker 그룹에 있는지 확인하세요."
+}
+
+require_env() {
+  [[ -f .env ]] || die ".env 파일이 없습니다.  cp .env.example .env  후 값을 채우세요."
+}
+
+# .env 값을 셸 변수로 읽는다 (주석과 빈 줄은 건너뛴다).
+load_env() {
+  set -a
+  # shellcheck disable=SC1091
+  source <(grep -E '^[A-Za-z_][A-Za-z0-9_]*=' .env)
+  set +a
+}
+
+# 프로필별로 반드시 채워져 있어야 하는 값.
+# compose 파일에서 검사하지 않는 이유는 docker-compose.yml 맨 위 주석 참고.
+require_profile_vars() {
+  local missing=() weak=()
+  local wants_data=false wants_remote=false
+
+  for name in "$@"; do
+    case "$name" in
+      data) wants_data=true ;;
+      remote) wants_remote=true ;;
+      full) wants_data=true; wants_remote=true ;;
+    esac
+  done
+
+  if [[ "$wants_data" == true ]]; then
+    for name in POSTGRES_PASSWORD REDIS_PASSWORD; do
+      local value="${!name:-}"
+      if [[ -z "$value" ]]; then
+        missing+=("$name")
+      elif (( ${#value} < 12 )); then
+        weak+=("$name")
+      fi
+    done
+  fi
+
+  if [[ "$wants_remote" == true && -z "${TS_AUTHKEY:-}" ]]; then
+    missing+=("TS_AUTHKEY")
+  fi
+
+  if (( ${#missing[@]} > 0 )); then
+    fail "이 프로필에 필요한 값이 .env 에 비어 있습니다: ${missing[*]}"
+    if [[ " ${missing[*]} " == *" TS_AUTHKEY "* ]]; then
+      info "  TS_AUTHKEY 는 https://login.tailscale.com/admin/settings/keys 에서 발급합니다."
+    fi
+    if [[ " ${missing[*]} " == *"PASSWORD"* ]]; then
+      info "  비밀번호는 이렇게 만드세요:  openssl rand -base64 24"
+    fi
+    exit 1
+  fi
+
+  if (( ${#weak[@]} > 0 )); then
+    die "비밀번호가 너무 짧습니다 (12자 이상 필요): ${weak[*]}
+  openssl rand -base64 24  로 만드세요."
+  fi
+}
+
+# 인자로 받은 프로필 이름들을 --profile 옵션으로 바꾼다.
+profile_args() {
+  local args=()
+  for name in "$@"; do
+    case "$name" in
+      data|monitor|remote|full) args+=(--profile "$name") ;;
+      *) die "모르는 프로필입니다: $name  (쓸 수 있는 값: data, monitor, remote, full)" ;;
+    esac
+  done
+  printf '%s\n' "${args[@]:-}"
+}
+
+# ------------------------------------------------------------------- 명령들
+
+cmd_up() {
+  require_docker; require_env; load_env
+  mapfile -t profiles < <(profile_args "$@")
+  require_profile_vars "$@"
+  info "스택을 시작합니다${*:+ (프로필: $*)}..."
+  compose "${profiles[@]}" up -d --remove-orphans
+  echo
+  cmd_status
+  echo
+  local port="${CADDY_HTTP_PORT:-8080}" domain="${BASE_DOMAIN:-nas.local}"
+  ok "첫 화면: ${SITE_SCHEME:-http}://${domain}:${port}"
+  info "${DIM}이름으로 안 열리면 './infra doctor' 를 실행해 보세요.${OFF}"
+}
+
+cmd_down() {
+  require_docker; require_env
+  info "스택을 내립니다 (데이터는 지워지지 않습니다)..."
+  compose --profile data --profile monitor --profile remote --profile full down
+  ok "완료"
+}
+
+cmd_restart() {
+  require_docker; require_env
+  compose restart "$@"
+  ok "재시작 완료"
+}
+
+cmd_status() {
+  require_docker; require_env
+  compose --profile data --profile monitor --profile remote --profile full ps
+}
+
+cmd_logs() {
+  require_docker; require_env
+  compose --profile data --profile monitor --profile remote --profile full \
+    logs --tail 100 --follow "$@"
+}
+
+cmd_pull() {
+  require_docker; require_env
+  info "이미지를 최신으로 받습니다..."
+  compose --profile data --profile monitor --profile remote --profile full pull
+  ok "완료. './infra up' 으로 새 이미지를 적용하세요."
+}
+
+cmd_config() {
+  require_env
+  compose --profile data --profile monitor --profile remote --profile full config "$@"
+}
+
+cmd_backup() { require_env; exec "$ROOT/scripts/backup.sh" "$@"; }
+cmd_restore() { require_env; exec "$ROOT/scripts/restore.sh" "$@"; }
+
+# ------------------------------------------------------------------ doctor
+
+cmd_doctor() {
+  local problems=0
+
+  info "── 도커 ──────────────────────────────────────────"
+  if command -v docker >/dev/null 2>&1; then
+    ok "docker 설치됨 ($(docker --version | cut -d, -f1))"
+  else
+    fail "docker 없음 - 패키지 센터에서 Container Manager 설치"; problems=$((problems+1))
+  fi
+  if docker compose version >/dev/null 2>&1; then
+    ok "docker compose 사용 가능"
+  else
+    fail "docker compose 플러그인 없음"; problems=$((problems+1))
+  fi
+  if docker info >/dev/null 2>&1; then
+    ok "도커 데몬 연결됨"
+  else
+    fail "도커 데몬에 연결 불가 - Container Manager 실행 여부 확인"; problems=$((problems+1))
+  fi
+
+  info ""
+  info "── 설정 파일 ─────────────────────────────────────"
+  if [[ -f .env ]]; then
+    ok ".env 존재"
+    load_env
+  else
+    fail ".env 없음 - cp .env.example .env"; problems=$((problems+1))
+    info ""
+    info "문제 ${problems}건. 위 항목부터 해결하세요."
+    return 1
+  fi
+
+  if [[ -n "${DOCKER_ROOT:-}" && -d "${DOCKER_ROOT}" ]]; then
+    ok "DOCKER_ROOT 폴더 존재: ${DOCKER_ROOT}"
+    if [[ -w "${DOCKER_ROOT}" ]]; then
+      ok "DOCKER_ROOT 쓰기 가능"
+    else
+      fail "DOCKER_ROOT 에 쓸 수 없음 - './scripts/bootstrap.sh' 실행"; problems=$((problems+1))
+    fi
+  else
+    fail "DOCKER_ROOT 폴더 없음: ${DOCKER_ROOT:-(비어 있음)} - './scripts/bootstrap.sh' 실행"
+    problems=$((problems+1))
+  fi
+
+  info ""
+  info "── 비밀번호 ──────────────────────────────────────"
+  for name in POSTGRES_PASSWORD REDIS_PASSWORD; do
+    local value="${!name:-}"
+    if [[ -z "$value" ]]; then
+      warn "$name 비어 있음 (data 프로필을 쓸 때만 필요)"
+    elif (( ${#value} < 12 )); then
+      fail "$name 이 너무 짧습니다 (${#value}자). openssl rand -base64 24 로 만드세요"
+      problems=$((problems+1))
+    else
+      ok "$name 설정됨"
+    fi
+  done
+
+  info ""
+  info "── 포트 ──────────────────────────────────────────"
+  for pair in "CADDY_HTTP_PORT:${CADDY_HTTP_PORT:-8080}" "CADDY_HTTPS_PORT:${CADDY_HTTPS_PORT:-8443}"; do
+    local label="${pair%%:*}" port="${pair##*:}"
+    case "$port" in
+      5000|5001) fail "$label=$port 은 DSM 이 쓰는 포트입니다. 다른 값으로 바꾸세요"; problems=$((problems+1)) ;;
+      80|443) warn "$label=$port 은 Web Station 과 겹칠 수 있습니다" ;;
+      *) ok "$label=$port" ;;
+    esac
+  done
+
+  info ""
+  info "── compose 문법 ──────────────────────────────────"
+  if compose --profile full config >/dev/null 2>&1; then
+    ok "docker-compose.yml 유효"
+  else
+    fail "docker-compose.yml 오류:"
+    compose --profile full config 2>&1 | sed 's/^/    /' >&2
+    problems=$((problems+1))
+  fi
+
+  info ""
+  if (( problems == 0 )); then
+    ok "문제 없음. './infra up' 으로 시작하세요."
+  else
+    fail "문제 ${problems}건. 위 항목을 해결한 뒤 다시 실행하세요."
+    return 1
+  fi
+}
+
+cmd_help() {
+  cat <<'HELP'
+NAS 인프라 관리 도구
+
+사용법: ./infra <명령> [인자...]
+
+  up [프로필...]   스택 시작. 프로필: data, monitor, remote, full
+                   예) ./infra up            → 진입점(Caddy)만
+                       ./infra up monitor    → + 상태감시, 로그뷰어
+                       ./infra up full       → 전부
+  down             스택 정지 (데이터는 남습니다)
+  restart [서비스] 재시작
+  status           지금 돌고 있는 것 확인
+  logs [서비스]    로그 실시간 보기 (Ctrl+C 로 종료)
+  pull             컨테이너 이미지 최신으로 갱신
+  backup           데이터베이스와 볼륨을 백업
+  restore <파일>   백업에서 복원
+  doctor           설정이 올바른지 점검 ← 문제가 생기면 먼저 실행
+  config           최종 조합된 compose 설정 출력 (디버깅용)
+
+처음이라면:
+  1) cp .env.example .env  후 값 채우기
+  2) ./scripts/bootstrap.sh
+  3) ./infra doctor
+  4) ./infra up
+HELP
+}
+
+# --------------------------------------------------------------------- 진입
+
+main() {
+  local command="${1:-help}"
+  shift || true
+  case "$command" in
+    up)      cmd_up "$@" ;;
+    down)    cmd_down "$@" ;;
+    restart) cmd_restart "$@" ;;
+    status|ps) cmd_status "$@" ;;
+    logs)    cmd_logs "$@" ;;
+    pull)    cmd_pull "$@" ;;
+    backup)  cmd_backup "$@" ;;
+    restore) cmd_restore "$@" ;;
+    doctor)  cmd_doctor "$@" ;;
+    config)  cmd_config "$@" ;;
+    help|-h|--help) cmd_help ;;
+    *) fail "모르는 명령: $command"; echo; cmd_help; exit 1 ;;
+  esac
+}
+
+# 테스트에서 함수만 가져다 쓸 수 있도록 하는 장치.
+#   INFRA_LIB_ONLY=1 source ./infra
+[[ -n "${INFRA_LIB_ONLY:-}" ]] || main "$@"

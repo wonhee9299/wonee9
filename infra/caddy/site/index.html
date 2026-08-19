@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wonee9 NAS</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; line-height: 1.7;
+  }
+  h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  p.sub { color: #777; margin-top: 0; }
+  ul { list-style: none; padding: 0; }
+  li { border: 1px solid #8883; border-radius: 8px; padding: 0.9rem 1.1rem; margin: 0.6rem 0; }
+  a { text-decoration: none; font-weight: 600; }
+  small { color: #777; display: block; font-weight: 400; }
+</style>
+</head>
+<body>
+  <h1>wonee9 NAS 인프라</h1>
+  <p class="sub">Caddy 가 정상 동작 중입니다.</p>
+  <ul>
+    <li>
+      <a href="//status.nas.local:8080">상태 감시</a>
+      <small>서비스가 살아 있는지 확인하고 알림을 보냅니다 (monitor 프로필)</small>
+    </li>
+    <li>
+      <a href="//logs.nas.local:8080">컨테이너 로그</a>
+      <small>돌아가는 컨테이너의 로그를 브라우저에서 봅니다 (monitor 프로필)</small>
+    </li>
+  </ul>
+  <p><small>주소가 안 열리면 PC 의 hosts 파일에 NAS 주소를 등록했는지 확인하세요.
+  자세한 내용은 저장소의 <code>infra/README.md</code> 참고.</small></p>
+</body>
+</html>
