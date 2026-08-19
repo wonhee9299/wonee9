@@ -1,0 +1,18 @@
+# 자격 증명 — 절대 커밋하지 않는다
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 영상 산출물은 저장소에 넣지 않는다 (용량)
+outputs/
+*.mp4
+*.mov
+
+# 인스타 웹 자동화 로컬 산출물 (로그인 세션·스크린샷)
+.ig-profile/
+.ig-shots/
