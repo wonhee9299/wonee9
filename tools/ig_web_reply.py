@@ -31,8 +31,34 @@ PROFILE_DIR = Path(__file__).resolve().parent.parent / ".ig-profile"
 SHOT_DIR = Path(__file__).resolve().parent.parent / ".ig-shots"
 
 
-def launch(playwright, headless: bool):
-    """로그인 세션이 남는 영속 프로필로 브라우저를 띄운다."""
+def launch(playwright, headless: bool, args=None):
+    """브라우저 컨텍스트를 얻는다.
+
+    이미 인스타에 로그인된 크롬이 있으면 그걸 쓰는 게 가장 빠르다. 우선순위:
+
+    1. `--cdp <url>` — 원격 디버깅이 켜진 채 **실행 중인** 크롬에 붙는다.
+       크롬을 닫을 필요가 없고 로그인 세션을 그대로 쓴다. 권장.
+       크롬을 이렇게 띄워둔다: `chrome --remote-debugging-port=9222`
+    2. `--chrome-user-data-dir <path>` — 실제 크롬 프로필로 띄운다.
+       **크롬을 완전히 종료한 뒤** 실행해야 한다 (프로필 잠금).
+    3. 기본 — 이 저장소의 `.ig-profile/` 전용 프로필. 최초 1회 `--login` 필요.
+    """
+    cdp = getattr(args, "cdp", None)
+    if cdp:
+        browser = playwright.chromium.connect_over_cdp(cdp)
+        contexts = browser.contexts
+        return contexts[0] if contexts else browser.new_context(locale="ko-KR")
+
+    chrome_dir = getattr(args, "chrome_user_data_dir", None)
+    if chrome_dir:
+        return playwright.chromium.launch_persistent_context(
+            user_data_dir=chrome_dir,
+            channel="chrome",
+            headless=headless,
+            viewport={"width": 1280, "height": 1000},
+            locale="ko-KR",
+        )
+
     PROFILE_DIR.mkdir(exist_ok=True)
     return playwright.chromium.launch_persistent_context(
         user_data_dir=str(PROFILE_DIR),
@@ -49,8 +75,8 @@ def save_shot(page, name: str) -> Path:
     return path
 
 
-def do_login(playwright) -> int:
-    ctx = launch(playwright, headless=False)
+def do_login(playwright, args=None) -> int:
+    ctx = launch(playwright, headless=False, args=args)
     page = ctx.pages[0] if ctx.pages else ctx.new_page()
     page.goto("https://www.instagram.com/", wait_until="domcontentloaded")
     print("브라우저에서 직접 로그인하세요. 2단계 인증까지 끝내고 피드가 보이면,")
@@ -81,7 +107,7 @@ def do_reply(playwright, args) -> int:
         print("답글 내용이 비어 있습니다.", file=sys.stderr)
         return 1
 
-    ctx = launch(playwright, headless=False)
+    ctx = launch(playwright, headless=False, args=args)
     page = ctx.pages[0] if ctx.pages else ctx.new_page()
     page.goto(args.url, wait_until="domcontentloaded", timeout=60000)
     page.wait_for_timeout(4000)
@@ -166,6 +192,15 @@ def main(argv=None) -> int:
     parser.add_argument("--message", help="답글 내용")
     parser.add_argument("--message-file", help="답글 내용을 담은 텍스트 파일")
     parser.add_argument("--dry-run", action="store_true", help="대상 댓글만 확인하고 게시하지 않음")
+    parser.add_argument(
+        "--cdp",
+        help="실행 중인 크롬에 붙는다 (예: http://localhost:9222). "
+             "크롬을 --remote-debugging-port=9222 로 띄워두면 로그인 세션을 그대로 쓴다. 권장",
+    )
+    parser.add_argument(
+        "--chrome-user-data-dir",
+        help="실제 크롬 프로필 경로로 띄운다. 크롬을 완전히 종료한 뒤 실행할 것",
+    )
     args = parser.parse_args(argv)
 
     # 브라우저를 띄우기 전에 인자를 검증한다
@@ -179,7 +214,7 @@ def main(argv=None) -> int:
         return 1
 
     with sync_playwright() as playwright:
-        return do_login(playwright) if args.login else do_reply(playwright, args)
+        return do_login(playwright, args) if args.login else do_reply(playwright, args)
 
 
 if __name__ == "__main__":

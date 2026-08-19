@@ -34,14 +34,25 @@ Tesla에 내 경험을 설명하는 **익명 메시지**를 보내려면 음성 
 
 `tools/ig_web_reply.py` 가 이 저장소에 있다.
 
+**사용자 크롬에 인스타 로그인이 이미 되어 있다 (2026-08-19 확인).**
+새로 로그인하지 말고 그 세션을 그대로 쓴다. 크롬을 원격 디버깅으로 띄우고 붙는 방식이
+가장 확실하다 (크롬을 닫을 필요 없음).
+
 ```
 pip install playwright && playwright install chromium
-python tools/ig_web_reply.py --login          # 로그인 세션 없을 때만. 사용자가 직접 로그인
-python tools/ig_web_reply.py --url <릴스URL> --reply-to shrah84 \
-    --message-file <답글텍스트파일> --dry-run   # 대상 확인
-python tools/ig_web_reply.py --url <릴스URL> --reply-to shrah84 \
-    --message-file <답글텍스트파일>             # 게시
+
+# 크롬을 원격 디버깅 포트로 띄운다 (이미 떠 있으면 완전 종료 후 다시)
+#   Windows: chrome.exe --remote-debugging-port=9222
+python tools/ig_web_reply.py --cdp http://localhost:9222 \
+    --url <릴스URL> --reply-to shrah84 --message-file <답글파일> --dry-run
+python tools/ig_web_reply.py --cdp http://localhost:9222 \
+    --url <릴스URL> --reply-to shrah84 --message-file <답글파일>
 ```
+
+CDP 가 안 되면 대안 순서:
+1. `--chrome-user-data-dir <크롬 프로필 경로>` (크롬 완전 종료 후 실행)
+2. `--login` 으로 전용 프로필에 사용자가 직접 로그인
+3. 스크립트가 계속 실패하면 **브라우저를 직접 조작해서 게시한다.** 결과만 맞으면 된다
 
 스크립트가 셀렉터 문제로 실패하면 `.ig-shots/` 스크린샷을 보고 고치거나
 브라우저를 직접 조작해 게시한다. 어느 쪽이든 결과만 맞으면 된다.
