@@ -1,0 +1,557 @@
+<title>영걸전 은닉 요소 대전</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#E7EBE5; --panel:#F6F9F3; --panel-2:#EDF1E9;
+    --ink:#141F1A; --body:#2C3A33; --muted:#5E6E65; --line:#C7D2C6;
+    --jade:#1B6844; --jade-soft:#DCEAE0;
+    --cinnabar:#A5301F; --cinnabar-soft:#F3DED9;
+    --gold:#836619; --gold-soft:#EFE6CC;
+    --shadow:0 1px 0 rgba(20,31,26,.05), 0 6px 22px -14px rgba(20,31,26,.35);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#0D1412; --panel:#151F1B; --panel-2:#1B2622;
+      --ink:#E2EAE3; --body:#C2CFC7; --muted:#8AA096; --line:#2B3A34;
+      --jade:#57BA88; --jade-soft:#16302380;
+      --cinnabar:#E88376; --cinnabar-soft:#3A1D1880;
+      --gold:#CDA755; --gold-soft:#33290F80;
+      --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 26px -16px rgba(0,0,0,.9);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0D1412; --panel:#151F1B; --panel-2:#1B2622;
+    --ink:#E2EAE3; --body:#C2CFC7; --muted:#8AA096; --line:#2B3A34;
+    --jade:#57BA88; --jade-soft:#16302380;
+    --cinnabar:#E88376; --cinnabar-soft:#3A1D1880;
+    --gold:#CDA755; --gold-soft:#33290F80;
+    --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 26px -16px rgba(0,0,0,.9);
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--body);
+    font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+    font-weight:400; line-height:1.75; letter-spacing:-.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+  @media (max-width:640px){ .wrap{padding:0 16px 72px} }
+
+  h1,h2,h3{font-family:"Gowun Batang","Nanum Myeongjo",serif;color:var(--ink);text-wrap:balance;margin:0;font-weight:700}
+  p{margin:0}
+  a{color:var(--jade)}
+  code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  /* ---------- header ---------- */
+  header{padding:72px 0 40px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--jade);
+    display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+  h1{font-size:clamp(38px,7vw,64px);line-height:1.12;letter-spacing:-.02em}
+  h1 .sub{display:block;font-size:clamp(15px,2.4vw,20px);font-weight:400;color:var(--muted);letter-spacing:0;margin-top:16px;font-family:"IBM Plex Sans KR",sans-serif;line-height:1.6}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .tag{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;
+    padding:5px 11px;border:1px solid var(--line);border-radius:2px;color:var(--muted);background:var(--panel);
+  }
+
+  /* ---------- section ---------- */
+  section{padding-top:64px}
+  .shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .kind{
+    font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;
+  }
+  .k-treasure{color:var(--gold);background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent)}
+  .k-branch{color:var(--cinnabar);background:var(--cinnabar-soft);border:1px solid color-mix(in srgb,var(--cinnabar) 35%,transparent)}
+  .k-system{color:var(--jade);background:var(--jade-soft);border:1px solid color-mix(in srgb,var(--jade) 35%,transparent)}
+  h2{font-size:clamp(25px,4vw,34px);line-height:1.25}
+  .lede{color:var(--muted);margin-top:12px;max-width:64ch;font-size:15.5px}
+  section > p, section > ul{max-width:68ch}
+  .stack{display:flex;flex-direction:column;gap:20px;margin-top:26px}
+
+  h3{font-size:18px;margin-bottom:10px;letter-spacing:-.01em}
+
+  ul{margin:0;padding-left:1.15em}
+  li{margin:6px 0}
+  li::marker{color:var(--jade)}
+  strong{color:var(--ink);font-weight:600}
+
+  /* ---------- panel ---------- */
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:24px;box-shadow:var(--shadow)}
+  .warn{background:var(--cinnabar-soft);border:1px solid color-mix(in srgb,var(--cinnabar) 40%,transparent);border-left:3px solid var(--cinnabar);border-radius:3px;padding:18px 22px}
+  .warn .label{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cinnabar);display:block;margin-bottom:7px}
+  .tip{background:var(--panel-2);border:1px solid var(--line);border-left:3px solid var(--jade);border-radius:3px;padding:18px 22px}
+  .tip .label{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--jade);display:block;margin-bottom:7px}
+
+  /* ---------- table ---------- */
+  .tw{overflow-x:auto;margin-top:22px;border:1px solid var(--line);border-radius:3px;background:var(--panel)}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+  th{
+    text-align:left;font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    padding:13px 16px;border-bottom:1px solid var(--line);background:var(--panel-2);white-space:nowrap;
+  }
+  td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+  .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--jade);font-weight:600}
+  .loss{color:var(--cinnabar);font-weight:600;font-size:13px}
+
+  /* ---------- routes taxonomy ---------- */
+  .routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:26px}
+  .route{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--jade);border-radius:3px;padding:18px}
+  .route h3{font-size:16px;margin-bottom:6px}
+  .route p{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+  /* ---------- branch diagram ---------- */
+  .tree{margin-top:28px;background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:28px 24px;overflow-x:auto}
+  .tree-root{
+    display:inline-block;font-family:"Gowun Batang",serif;font-size:19px;font-weight:700;color:var(--ink);
+    padding:9px 20px;border:2px solid var(--cinnabar);border-radius:2px;background:var(--paper);
+  }
+  .fork{margin-top:22px;display:flex;flex-direction:column;gap:20px;min-width:440px}
+  .arm{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:start}
+  @media (max-width:560px){ .arm{grid-template-columns:1fr;gap:10px} }
+  .arm-key{
+    font-family:"IBM Plex Sans KR",sans-serif;font-size:14px;font-weight:600;padding:9px 14px;border-radius:2px;text-align:center;
+  }
+  .alive{color:var(--jade);background:var(--jade-soft);border:1px solid color-mix(in srgb,var(--jade) 45%,transparent)}
+  .dead{color:var(--cinnabar);background:var(--cinnabar-soft);border:1px solid color-mix(in srgb,var(--cinnabar) 45%,transparent)}
+  .leaves{display:flex;flex-direction:column;gap:8px;border-left:1px solid var(--line);padding-left:18px}
+  @media (max-width:560px){ .leaves{padding-left:14px} }
+  .leaf{font-size:14px;line-height:1.6}
+  .leaf b{color:var(--ink);font-weight:600}
+  .leaf .arrow{color:var(--muted);font-family:"IBM Plex Mono",monospace;margin:0 6px}
+  .reward{color:var(--gold);font-weight:600}
+
+  /* ---------- checklist ---------- */
+  .cl{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .cl-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+  .cl-head span{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .cl-reset{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--line);border-radius:2px;padding:4px 10px;cursor:pointer}
+  .cl-reset:hover{color:var(--ink);border-color:var(--muted)}
+  .cl-reset:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+  .cl li{list-style:none;margin:0;border-bottom:1px solid var(--line)}
+  .cl ol{margin:0;padding:0;counter-reset:step}
+  .cl li:last-child{border-bottom:none}
+  .cl label{display:grid;grid-template-columns:auto 30px 1fr;gap:12px;align-items:baseline;padding:12px 18px;cursor:pointer}
+  .cl label:hover{background:var(--panel-2)}
+  .cl input{margin:0;accent-color:var(--jade);width:15px;height:15px;position:relative;top:2px;cursor:pointer}
+  .cl input:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+  .cl .step{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .cl .what{font-size:14.5px;line-height:1.55}
+  .cl .what b{color:var(--ink);font-weight:600}
+  .cl .where{color:var(--muted);font-size:13px}
+  .cl input:checked ~ .what{opacity:.45;text-decoration:line-through}
+
+  footer{margin-top:80px;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+  footer h3{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+  footer ul{padding-left:1.1em}
+  footer li{margin:4px 0}
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">KOEI · 1995 · 삼국지 영걸전</div>
+  <h1>영걸전 은닉 요소 대전
+    <span class="sub">보물창고 한 칸, 선택지 한 줄, 10턴의 인내. 한 번 지나치면 그 회차에서는 두 번 다시 돌아올 수 없는 것들만 모았다.</span>
+  </h1>
+  <div class="meta">
+    <span class="tag">원작 기준</span>
+    <span class="tag">리메이크 / 리파인 미적용</span>
+    <span class="tag">숨은 요소 특화</span>
+  </div>
+</header>
+
+<section>
+  <div class="shead"><span class="kind k-system">기본 규칙</span></div>
+  <h2>손해는 대부분 이동력에서 난다</h2>
+  <p class="lede">숨은 요소를 놓치는 이유는 몰라서가 아니라, 알고도 한 칸이 모자라서다.</p>
+  <div class="stack">
+    <div class="panel">
+      <ul>
+        <li><strong>패배 조건은 셋이다.</strong> 유비의 병력 0 · 유비의 사기 0 · 제한 턴 초과. 하나만 걸려도 끝난다.</li>
+        <li><strong>아이템은 무장당 8개까지.</strong> 종류 구분이 없다. 회복약을 쟁여두면 정작 보물을 들 자리가 없다.</li>
+        <li><strong>보물창고와 군량고는 일반 지형보다 이동력을 더 먹는다.</strong> 이 게임 최대의 손실 원인이다.</li>
+        <li><strong>보물창고에는 그 시점 상점에서 살 수 없는 물건이 들어 있다.</strong> 시세로 재지 말고 무조건 회수한다.</li>
+      </ul>
+    </div>
+    <div class="warn">
+      <span class="label">영구 손실</span>
+      전투가 끝나면 그 맵은 다시 갈 수 없다. 보물이 있는 맵은 <b>1턴째부터 경로를 역산해서</b> 움직여라. 말 아이템을 미리 배분해두는 것이 회수율을 가장 크게 올린다.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-system">분류</span></div>
+  <h2>숨은 요소는 네 경로로만 들어온다</h2>
+  <div class="routes">
+    <div class="route"><h3>보물창고 · 군량고</h3><p>맵 위의 칸을 밟아 회수한다. 놓치면 영구 손실.</p></div>
+    <div class="route"><h3>선택지 분기</h3><p>전투 전후 대화의 갈림길. 스토리 · 아이템 · 동료가 통째로 바뀐다.</p></div>
+    <div class="route"><h3>사자 이벤트</h3><p>특정 무장을 사자로 보낸다. 아이템과 전투 스킵을 동시에 얻는다.</p></div>
+    <div class="route"><h3>일기토</h3><p>특정 무장끼리 인접하면 발생. 연동 아이템이 걸려 있다.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-branch">최대 분기</span></div>
+  <h2>맥성의 전투</h2>
+  <p class="lede">이 게임의 스토리는 여기서 갈린다. 관우의 생사, 장비의 생사, 관평 · 주창 · 왕보 · 요화 · 조루의 생존, 장료 영입 가능 여부, 그리고 엔딩이 전부 이 한 판에서 결정된다.</p>
+
+  <div class="stack">
+    <div class="panel">
+      <h3>관우 생존 조건 — 둘 중 하나만</h3>
+      <ul>
+        <li><strong>적 전멸</strong>, 또는</li>
+        <li><strong>관우를 맵 서쪽 끝까지 탈출</strong>시킨다.</li>
+      </ul>
+      <p style="margin-top:12px">관우가 <strong>퇴각당하면 그 자리에서 사망</strong>한다. 병력이 깎이는 걸 버티는 싸움이 아니라, 처음부터 탈출을 목표로 짜는 판이다.</p>
+    </div>
+    <div class="tip">
+      <span class="label">사전 준비</span>
+      관우는 앞선 여러 전투에 결장하기 때문에 레벨과 장비가 뒤처져 있기 십상이다. 맥성 이전에 관우 · 관평에게 경험치와 아이템을 몰아줘라. <b>적토마(이동 +3)를 관우에게 주면 탈출 난이도가 크게 내려간다.</b>
+    </div>
+  </div>
+
+  <div class="tree">
+    <div class="tree-root">맥성의 전투</div>
+    <div class="fork">
+      <div class="arm">
+        <div class="arm-key alive">관우 생존</div>
+        <div class="leaves">
+          <div class="leaf">오와 <b>동맹</b><span class="arrow">→</span><span class="reward">손자의 병법서</span> · 서릉 전투 스킵 · 즉시 제4장</div>
+          <div class="leaf">오와 <b>결전</b><span class="arrow">→</span>장비가 전투 직전 합류 · 서릉 전투 진행</div>
+        </div>
+      </div>
+      <div class="arm">
+        <div class="arm-key dead">관우 사망</div>
+        <div class="leaves">
+          <div class="leaf">오와 <b>동맹</b><span class="arrow">→</span><span class="reward">손자의 병법서</span> · 서릉 전투 스킵 · 즉시 제4장</div>
+          <div class="leaf">오와 <b>결전</b><span class="arrow">→</span><b style="color:var(--cinnabar)">장비 암살</b> · 서릉 전투 진행</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="panel">
+      <ul>
+        <li><strong>오와의 동맹은 관우의 생사와 무관하게 고를 수 있고, 고르면 손자의 병법서(방어 +22%)를 받는다.</strong> 게임 내 최상급 방어 아이템이다.</li>
+        <li>오와 화목하는 선택지 계열에서는 병법서를 받고 해당 전투가 스킵된다. 화목하지 않으면 이릉 전투로 이어진다.</li>
+        <li><strong>관우를 살리면 장비도 자연히 산다.</strong> 관우 생존 이후에는 무슨 선택을 하든 전투에서 이기기만 하면 해피엔딩이다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-branch">사자 이벤트</span></div>
+  <h2>싸우지 않고 얻는 쪽이 이득이다</h2>
+  <p class="lede">숨은 요소 중 가성비가 가장 높다. 아이템을 받으면서 전투 하나를 통째로 건너뛴다.</p>
+  <div class="stack">
+    <div class="panel">
+      <h3>서주 구원전 · 소패 — <span class="mono">싸운다 / 휴전을 맺는다</span></h3>
+      <p><strong>휴전</strong>을 고르면 장비가 사신으로 가고, 도겸에게 <span class="reward">자웅일대검</span>을 받는다.</p>
+    </div>
+    <div class="panel">
+      <h3>익주 공략전 · 유장 항복</h3>
+      <ul>
+        <li><strong>마초를 사자로 보내 유장을 설득</strong> → <span class="reward">조황비전(이동 +1)</span> 획득 + <strong>성도의 전투 스킵</strong>.</li>
+        <li>반대로 성도의 전투를 진행하면, <strong>유장을 제외한 이름 있는 적장들을 유비가 설득해 아군으로</strong> 만들 수 있다.</li>
+      </ul>
+      <p style="margin-top:12px;color:var(--muted)">아이템과 시간을 원하면 설득, 동료 머릿수를 원하면 전투. 둘 다는 안 된다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-branch">생사 분기</span></div>
+  <h2>낙성의 전투 — 방통을 10턴 버티게 하라</h2>
+  <div class="stack">
+    <div class="panel">
+      <ul>
+        <li>방통이 <strong class="num">10턴</strong>까지 살아 있으면 생존한다. 10턴 안에 퇴각하면 역사대로 사망.</li>
+        <li>방통은 합류 직후 첫 전투가 곧 생사 분기라, 한 턴 써보고 그대로 죽는 경우가 흔하다.</li>
+        <li><strong>살려두면 이득이 크다.</strong> 후반 야전에서 광역 책략 <em>폭풍</em>으로 판을 정리할 수 있고, <strong>제4장 별동대의 총대장</strong>이 된다. 방통이 죽었다면 조운이 총대장을 맡는다.</li>
+      </ul>
+    </div>
+    <div class="tip">
+      <span class="label">정석</span>
+      방통을 전진시키지 마라. 아군 뒤쪽에 붙여 10턴을 그냥 흘려보내는 것이 가장 확실하다.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-branch">제4장</span></div>
+  <h2>별동대 — 파견해야만 열리는 전투</h2>
+  <p class="lede">별동대를 파견하면 진창 · 장안 전투가 추가되고, 대신 낙양 전투가 확실히 스킵된다.</p>
+  <div class="stack">
+    <div class="panel">
+      <ul>
+        <li><strong>총대장</strong> — 방통(생존 시) / 조운(방통 사망 시)</li>
+        <li><strong>진창의 전투</strong> — 위연 vs 학소 일기토. 승리 조건은 학소 격파. 위연이 시종일관 밀리다가 결정적 순간에 학소의 지병이 도져 끝난다.</li>
+        <li><strong>장안의 전투는 진창을 클리어해야</strong> 열린다.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>별동대에서만 나오는 것</h3>
+      <ul>
+        <li><span class="reward">육도(방어 +15%)</span> · <span class="reward">삼략(방어 +15%)</span> — 별동대 첫 전투인 진창에서 획득</li>
+        <li><span class="reward">궁술지침서</span> — 진창</li>
+        <li><strong>이민족 전원 영입</strong> — 진창에서 <strong>마초가 고창 · 장획 · 정덕 중 한 명이라도 접촉</strong>하면 이민족이 전부 아군이 된다</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-treasure">보물</span></div>
+  <h2>숨은 아이템 전량</h2>
+
+  <h3 style="margin-top:30px">무기</h3>
+  <div class="tw"><table>
+    <thead><tr><th>아이템</th><th>입수처</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>패자검</td><td>업의 전투 1</td><td><strong>게임 최강 공격 아이템 (공격 +24%)</strong>. 사마씨 3인이 소지</td></tr>
+      <tr><td>영걸검</td><td>장사의 전투 보물창고</td><td></td></tr>
+      <tr><td>의천검</td><td>양양의 전투 1 보물창고</td><td></td></tr>
+      <tr><td>칠성검</td><td>광릉의 전투 보물창고</td><td></td></tr>
+      <tr><td>방천화극</td><td>하비의 전투 보물창고</td><td>여포와의 마지막 전투</td></tr>
+      <tr><td>자웅일대검</td><td>서주 구원전 — 장비를 사자로 보내 휴전</td><td class="loss">선택지 전용</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="margin-top:34px">말 — 게임 전체에 단 3개</h3>
+  <div class="tw"><table>
+    <thead><tr><th>아이템</th><th>효과</th><th>입수처</th></tr></thead>
+    <tbody>
+      <tr><td>적토마</td><td class="num">이동 +3</td><td>하비의 전투 보물창고</td></tr>
+      <tr><td>적로</td><td class="num">이동 +2</td><td>강하의 전투 — 조운 vs 장무 일기토 후</td></tr>
+      <tr><td>조황비전</td><td class="num">이동 +1</td><td>마초를 사자로 보내 유장 항복</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tip" style="margin-top:18px">
+    <span class="label">배분</span>
+    발이 느린 <b>수송대 · 발석차</b>, <b>유비가 빨리 탈출 지점으로 가야 하는 스테이지</b>, 그리고 <b>맥성의 관우</b>. 이 셋이 우선순위다.
+  </div>
+
+  <h3 style="margin-top:34px">병법서</h3>
+  <div class="tw"><table>
+    <thead><tr><th>아이템</th><th>효과</th><th>입수처</th></tr></thead>
+    <tbody>
+      <tr><td>손자의 병법서</td><td class="num">방어 +22%</td><td>이릉 전투 전 <strong>오와 동맹</strong></td></tr>
+      <tr><td>육도</td><td class="num">방어 +15%</td><td>별동대 진창의 전투</td></tr>
+      <tr><td>삼략</td><td class="num">방어 +15%</td><td>별동대 진창의 전투</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="margin-top:34px">회복 아이템</h3>
+  <div class="tw"><table>
+    <thead><tr><th>아이템</th><th>효과</th><th>입수처</th></tr></thead>
+    <tbody>
+      <tr><td>원군보고</td><td>턴마다 병력 소폭 회복</td><td>가맹관 전투 보물고</td></tr>
+      <tr><td>칙명서</td><td>턴마다 사기 소폭 회복</td><td>와구관 전투 2 — <strong>중간 섬</strong>의 보물고</td></tr>
+      <tr><td>옥새</td><td>턴마다 병력 + 사기 소폭 회복</td><td>허창 전투 2 보물고</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warn" style="margin-top:18px">
+    <span class="label">함정</span>
+    셋을 한 무장에게 전부 몰아줘도 <b>턴당 회복량은 중첩되지 않는다.</b> 각각 다른 무장에게 분산시켜라. 특히 <b>칙명서는 맵 중간의 섬</b>에 있어, 이동 계획 없이는 먹지 못한다.
+  </div>
+
+  <h3 style="margin-top:34px">전직 · 병과 변경</h3>
+  <div class="tw"><table>
+    <thead><tr><th>아이템</th><th>변경 결과</th><th>입수처</th></tr></thead>
+    <tbody>
+      <tr><td>검술지침서</td><td>단병</td><td>팽성 · 고성 · 장사 · 완의 전투 2 · 허창의 전투 1</td></tr>
+      <tr><td>궁술지침서</td><td>궁병</td><td>팽성 클리어 후 백성 상납 · 강릉 · 진창 · 허창의 전투 1</td></tr>
+      <tr><td>마술지침서</td><td>경기병</td><td>양평관 · 양양의 전투 2 · 완의 전투 2</td></tr>
+      <tr><td>청랑서</td><td><strong>수송대</strong></td><td>정군산 · 양양의 전투 2</td></tr>
+      <tr><td>고취구</td><td><strong>군악대</strong></td><td>여남 · 공안</td></tr>
+      <tr><td>둔갑천서</td><td><strong>주술사</strong></td><td>—</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-system">시스템</span></div>
+  <h2>병과 — 숨은 최적해는 주술사다</h2>
+  <div class="stack">
+    <div class="panel">
+      <h3>전직 타이밍은 레벨 <span class="num">15</span>, 레벨 <span class="num">30</span></h3>
+      <ul>
+        <li>보병 — 단병 → 장병 → 전차대</li>
+        <li>기병 — 경기병 → 중기병 → 친위대</li>
+        <li>궁병 — 궁병 → 연노병 → 발석차</li>
+        <li>적병 — 산적 → 흉적 → 의적</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>보조계 — 수송대 · 군악대 · 주술사</h3>
+      <ul>
+        <li><strong>상성이 아예 없다.</strong> 상성으로 얻어맞을 일이 없다는 뜻이다.</li>
+        <li>1레벨 기본 병력은 <span class="num">300</span>으로 동일하지만, 레벨업당 <strong>수송대 · 군악대 +40</strong> / <strong>주술사 +50</strong>. 주술사가 몸도 조금 더 튼튼하다.</li>
+        <li><strong>주술사는 후반에 최강 사기 책략 <em>낙뢰</em>를 배운다.</strong> 한 부대만 있어도 낙뢰를 난사할 수 있어 사실상 밸런스 붕괴다.</li>
+      </ul>
+      <p style="margin-top:12px;color:var(--muted)">정공법으로 한 번 깼다면, 두 번째 회차의 재미는 둔갑천서로 주술사를 만들어보는 데 있다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-branch">영입</span></div>
+  <h2>조건을 채워야만 오는 무장들</h2>
+  <div class="tw"><table>
+    <thead><tr><th>무장</th><th>조건</th></tr></thead>
+    <tbody>
+      <tr><td>장료</td><td><strong>관우 생존</strong> 상태에서 허창 전투 대화 이벤트로 항복</td></tr>
+      <tr><td>관평 · 주창<br>왕보 · 요화 · 조루</td><td><strong>관우 생존</strong> 상태로 완의 전투 2 종료 → 허창부터 합류</td></tr>
+      <tr><td>서서</td><td>남양 전투에서 우군으로 활약 후 이탈. <strong>장안 / 낙양 전투에서 아군과 인접</strong>시키면 우군으로 재합류</td></tr>
+      <tr><td>감녕 · 능통<br>서성 · 정봉</td><td>제4장 형주탈환, <strong>신야 또는 남사 전투</strong> 종료 후 레벨 40 전후로 합류</td></tr>
+      <tr><td>고창 · 장획 · 정덕</td><td>별동대 진창 전투에서 <strong>마초가 한 명이라도 접촉</strong></td></tr>
+      <tr><td>이명</td><td><strong>태산 전투</strong>를 선택</td></tr>
+      <tr><td>조하</td><td><strong>팽성 전투</strong>를 선택</td></tr>
+      <tr><td>동량</td><td><strong>하구 전투</strong>를 선택</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warn" style="margin-top:18px">
+    <span class="label">배타 선택</span>
+    태산 / 팽성 / 하구는 <b>어느 쪽을 고르냐에 따라 동료가 달라지는 선택지</b>다. 한 회차에서 셋을 다 모을 수는 없다.
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-treasure">일기토</span></div>
+  <h2>인접시켜야 나오는 대진</h2>
+  <div class="tw"><table>
+    <thead><tr><th>전투</th><th>대진</th><th>연동</th></tr></thead>
+    <tbody>
+      <tr><td>북해의 전투</td><td>조운 vs 관해</td><td></td></tr>
+      <tr><td>서주의 전투 1</td><td>관우 vs 우금</td><td></td></tr>
+      <tr><td>소패의 전투</td><td>장비 vs 하후연</td><td></td></tr>
+      <tr><td>양양의 전투 1</td><td>조운 vs 장윤</td><td></td></tr>
+      <tr><td>강하의 전투</td><td>조운 vs 장무</td><td><span class="reward">적로 획득</span></td></tr>
+      <tr><td>진창의 전투</td><td>위연 vs 학소</td><td>별동대 · 승리 조건</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tip" style="margin-top:18px">
+    <span class="label">필수</span>
+    <b>강하의 조운 vs 장무는 반드시 챙겨라.</b> 이동 +2짜리 적로가 이 일기토에서만 나온다.
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-system">주의</span></div>
+  <h2>알려진 진행 불가 버그</h2>
+  <div class="warn" style="margin-top:22px">
+    <span class="label">게임 정지</span>
+    치트 · 숨겨진 요소를 사용한 뒤 <b>남양의 전투에서 유비로 조인을 퇴각시키면 게임이 더 이상 진행되지 않는다.</b> 해당 전투에서 조인 처리는 다른 무장에게 맡기는 편이 안전하다.
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-system">회차 목표</span></div>
+  <h2>1599</h2>
+  <p class="lede">커뮤니티의 대표적인 야리코미 목표 — <strong>최종전인 업의 전투 3연전에 출전할 최후의 15인을 전원 레벨 99로 육성한다.</strong></p>
+  <div class="stack">
+    <div class="panel">
+      <ul>
+        <li><strong>청랑서 · 고취구는 1599 플레이의 필수 아이템이다.</strong> 경험치를 몰아주기 위해 부대를 보조계로 갈아끼우는 데 쓴다.</li>
+        <li>따라서 이 둘이 나오는 <strong>정군산 · 양양 2 · 여남 · 공안</strong>은 1599를 노린다면 절대 스킵할 수 없다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="kind k-treasure">실전</span></div>
+  <h2>한 회차 회수 체크리스트</h2>
+  <p class="lede">게임 진행 순서다. 체크는 이 브라우저에만 저장된다.</p>
+  <div class="cl">
+    <div class="cl-head"><span id="cl-count">진행 0 / 17</span><button class="cl-reset" id="cl-reset" type="button">초기화</button></div>
+    <ol id="cl-list">
+      <li><label><input type="checkbox" data-k="1"><span class="step">01</span><span class="what"><b>서주 구원전</b> — 휴전 선택 <span class="where">→ 자웅일대검</span></span></label></li>
+      <li><label><input type="checkbox" data-k="2"><span class="step">02</span><span class="what"><b>하비</b> — 보물창고 <span class="where">적토마 · 방천화극</span></span></label></li>
+      <li><label><input type="checkbox" data-k="3"><span class="step">03</span><span class="what"><b>광릉</b> — 보물창고 <span class="where">칠성검</span></span></label></li>
+      <li><label><input type="checkbox" data-k="4"><span class="step">04</span><span class="what"><b>여남 · 공안</b> <span class="where">고취구</span></span></label></li>
+      <li><label><input type="checkbox" data-k="5"><span class="step">05</span><span class="what"><b>강하</b> — 조운 vs 장무 일기토 <span class="where">→ 적로</span></span></label></li>
+      <li><label><input type="checkbox" data-k="6"><span class="step">06</span><span class="what"><b>양양 1 · 2</b> <span class="where">의천검 / 마술지침서 · 청랑서</span></span></label></li>
+      <li><label><input type="checkbox" data-k="7"><span class="step">07</span><span class="what"><b>장사</b> <span class="where">영걸검 · 검술지침서</span></span></label></li>
+      <li><label><input type="checkbox" data-k="8"><span class="step">08</span><span class="what"><b>낙성</b> — 방통 10턴 생존</span></label></li>
+      <li><label><input type="checkbox" data-k="9"><span class="step">09</span><span class="what"><b>정군산</b> <span class="where">청랑서</span></span></label></li>
+      <li><label><input type="checkbox" data-k="10"><span class="step">10</span><span class="what"><b>가맹관</b> <span class="where">원군보고</span></span></label></li>
+      <li><label><input type="checkbox" data-k="11"><span class="step">11</span><span class="what"><b>익주</b> — 마초로 유장 설득 <span class="where">→ 조황비전</span></span></label></li>
+      <li><label><input type="checkbox" data-k="12"><span class="step">12</span><span class="what"><b>와구관 2</b> — 중간 섬 <span class="where">칙명서</span></span></label></li>
+      <li><label><input type="checkbox" data-k="13"><span class="step">13</span><span class="what"><b>맥성</b> — 관우 생존 <span class="where">적 전멸 또는 서쪽 탈출</span></span></label></li>
+      <li><label><input type="checkbox" data-k="14"><span class="step">14</span><span class="what"><b>오와 동맹</b> <span class="where">→ 손자의 병법서</span></span></label></li>
+      <li><label><input type="checkbox" data-k="15"><span class="step">15</span><span class="what"><b>제4장 별동대 파견</b> — 진창 <span class="where">육도 · 삼략 · 이민족 영입</span></span></label></li>
+      <li><label><input type="checkbox" data-k="16"><span class="step">16</span><span class="what"><b>허창 1 · 2</b> <span class="where">검술 · 궁술지침서 / 옥새</span></span></label></li>
+      <li><label><input type="checkbox" data-k="17"><span class="step">17</span><span class="what"><b>업 1</b> <span class="where">패자검</span></span></label></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <h3>출처</h3>
+  <ul>
+    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84">삼국지 영걸전 — 나무위키</a></li>
+    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EC%95%84%EC%9D%B4%ED%85%9C">삼국지 영걸전 / 아이템</a></li>
+    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EC%84%A0%ED%83%9D%EC%A7%80">삼국지 영걸전 / 선택지</a></li>
+    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EB%B3%91%EA%B3%BC">삼국지 영걸전 / 병과</a></li>
+    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/1599">삼국지 영걸전 / 1599</a></li>
+    <li><a href="https://m.cafe.daum.net/Goodsam/bQA/887?svc=cafeapi">삼국지 영걸전 완벽 공략 — 삼국지아카데미</a></li>
+    <li><a href="https://ko.wikipedia.org/wiki/%EC%82%BC%EA%B5%AD%EC%A7%80_%EC%98%81%EA%B1%B8%EC%A0%84">삼국지 영걸전 — 위키백과</a></li>
+  </ul>
+  <p style="margin-top:18px">전투 번호와 세부 수치는 판본(PC · SFC · PS)과 번역판에 따라 표기가 다를 수 있다. 팬 개조판인 영걸전 리메이크 · 리파인은 분기와 수치가 별개다.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY='yg-hidden-checklist-v1';
+  var boxes=[].slice.call(document.querySelectorAll('#cl-list input[type=checkbox]'));
+  var count=document.getElementById('cl-count');
+  var reset=document.getElementById('cl-reset');
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; }
+  }
+  function save(state){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function render(){
+    var done=boxes.filter(function(b){return b.checked}).length;
+    count.textContent='진행 '+done+' / '+boxes.length;
+  }
+
+  var state=load();
+  boxes.forEach(function(b){
+    if(state[b.dataset.k]) b.checked=true;
+    b.addEventListener('change',function(){
+      var s=load(); 
+      if(b.checked){ s[b.dataset.k]=1; } else { delete s[b.dataset.k]; }
+      save(s); render();
+    });
+  });
+  reset.addEventListener('click',function(){
+    boxes.forEach(function(b){ b.checked=false; });
+    save({}); render();
+  });
+  render();
+})();
+</script>
