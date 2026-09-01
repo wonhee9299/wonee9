@@ -4,63 +4,62 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
 <style>
   :root{
-    --paper:#E7EBE5; --panel:#F6F9F3; --panel-2:#EDF1E9;
-    --ink:#141F1A; --body:#2C3A33; --muted:#5E6E65; --line:#C7D2C6;
-    --jade:#1B6844; --jade-soft:#DCEAE0;
-    --cinnabar:#A5301F; --cinnabar-soft:#F3DED9;
-    --gold:#836619; --gold-soft:#EFE6CC;
+    --paper:#E7EBE5;--panel:#F6F9F3;--panel-2:#EDF1E9;
+    --ink:#141F1A;--body:#2C3A33;--muted:#5E6E65;--line:#C7D2C6;
+    --jade:#1B6844;--jade-soft:#DCEAE0;
+    --cinnabar:#A5301F;--cinnabar-soft:#F3DED9;
+    --gold:#836619;--gold-soft:#EFE6CC;
     color-scheme:light;
   }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --paper:#0D1412; --panel:#151F1B; --panel-2:#1B2622;
-      --ink:#E2EAE3; --body:#C2CFC7; --muted:#8AA096; --line:#2B3A34;
-      --jade:#57BA88; --jade-soft:#163023;
-      --cinnabar:#E88376; --cinnabar-soft:#3A1D18;
-      --gold:#CDA755; --gold-soft:#33290F;
-      color-scheme:dark;
-    }
-  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#0D1412;--panel:#151F1B;--panel-2:#1B2622;
+    --ink:#E2EAE3;--body:#C2CFC7;--muted:#8AA096;--line:#2B3A34;
+    --jade:#57BA88;--jade-soft:#163023;
+    --cinnabar:#E88376;--cinnabar-soft:#3A1D18;
+    --gold:#CDA755;--gold-soft:#33290F;
+    color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#0D1412; --panel:#151F1B; --panel-2:#1B2622;
-    --ink:#E2EAE3; --body:#C2CFC7; --muted:#8AA096; --line:#2B3A34;
-    --jade:#57BA88; --jade-soft:#163023;
-    --cinnabar:#E88376; --cinnabar-soft:#3A1D18;
-    --gold:#CDA755; --gold-soft:#33290F;
-    color-scheme:dark;
-  }
+    --paper:#0D1412;--panel:#151F1B;--panel-2:#1B2622;
+    --ink:#E2EAE3;--body:#C2CFC7;--muted:#8AA096;--line:#2B3A34;
+    --jade:#57BA88;--jade-soft:#163023;
+    --cinnabar:#E88376;--cinnabar-soft:#3A1D18;
+    --gold:#CDA755;--gold-soft:#33290F;
+    color-scheme:dark;}
   *{box-sizing:border-box}
   body{background:var(--paper);color:var(--body);
     font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
     line-height:1.7;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1020px;margin:0 auto;padding:0 24px 96px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px 96px}
   @media (max-width:640px){.wrap{padding:0 14px 72px}}
   h1,h2,h3{font-family:"Gowun Batang","Nanum Myeongjo",serif;color:var(--ink);text-wrap:balance;margin:0;font-weight:700}
   p{margin:0}
   a{color:var(--jade)}
   .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
 
-  header{padding:66px 0 32px;border-bottom:2px solid var(--ink)}
+  header{padding:64px 0 30px;border-bottom:2px solid var(--ink)}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.22em;
     text-transform:uppercase;color:var(--jade);display:flex;align-items:center;gap:12px;margin-bottom:20px}
   .eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
   h1{font-size:clamp(34px,6.4vw,58px);line-height:1.12;letter-spacing:-.02em}
   .sub{display:block;font-family:"IBM Plex Sans KR",sans-serif;font-size:clamp(14.5px,2.3vw,19px);
-    font-weight:400;color:var(--muted);letter-spacing:0;margin-top:16px;line-height:1.65;max-width:62ch}
-
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;background:var(--line);
-    border:1px solid var(--line);border-radius:3px;margin-top:30px;overflow:hidden}
-  .stat{background:var(--panel);padding:14px 16px}
-  .stat b{display:block;font-family:"IBM Plex Mono",monospace;font-size:23px;color:var(--ink);
+    font-weight:400;color:var(--muted);letter-spacing:0;margin-top:16px;line-height:1.65;max-width:64ch}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:3px;margin-top:28px;overflow:hidden}
+  .stat{background:var(--panel);padding:13px 15px}
+  .stat b{display:block;font-family:"IBM Plex Mono",monospace;font-size:22px;color:var(--ink);
     font-variant-numeric:tabular-nums;line-height:1.2}
-  .stat span{font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+  .stat span{font-size:11.5px;color:var(--muted)}
 
-  /* filter bar */
-  .bar{position:sticky;top:0;z-index:20;background:var(--paper);
-    border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:8px;
-    display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .vernote{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:3px;padding:15px 18px;font-size:13.5px;line-height:1.65}
+  .vernote .hd{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
+  .vernote b{color:var(--ink)}
+
+  .bar{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);
+    padding:13px 0;margin-bottom:6px;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .bar .lbl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--muted);margin-right:4px}
+    text-transform:uppercase;color:var(--muted);margin-right:3px}
   .fbtn{font-family:"IBM Plex Sans KR",sans-serif;font-size:13px;padding:6px 13px;border-radius:2px;
     border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;line-height:1.4}
   .fbtn:hover{color:var(--ink);border-color:var(--muted)}
@@ -69,41 +68,51 @@
   .hits{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);
     font-variant-numeric:tabular-nums}
 
-  .chap{padding-top:44px}
-  .chap-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:12px;
-    border-bottom:1px solid var(--line);margin-bottom:6px}
-  .chap-h h2{font-size:clamp(21px,3.4vw,28px)}
+  .chap{padding-top:42px}
+  .chap-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:11px;
+    border-bottom:1px solid var(--line);margin-bottom:4px}
+  .chap-h h2{font-size:clamp(20px,3.2vw,27px)}
   .chap-h .arc{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--muted)}
 
-  .row{display:grid;grid-template-columns:44px 1fr;gap:0 16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+  .row{display:grid;grid-template-columns:46px 1fr;gap:0 16px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
   .row .n{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);
-    font-variant-numeric:tabular-nums;padding-top:3px}
+    font-variant-numeric:tabular-nums;padding-top:4px}
   .row.hot .n{color:var(--cinnabar);font-weight:600}
   .nm{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
-  .nm h3{font-size:17.5px}
+  .nm h3{font-size:18px}
+  .nm .jp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted)}
   .badge{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.12em;
     text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap}
   .b-branch{color:var(--cinnabar);background:var(--cinnabar-soft);border:1px solid color-mix(in srgb,var(--cinnabar) 38%,transparent)}
   .b-trap{color:var(--cinnabar);background:transparent;border:1px solid color-mix(in srgb,var(--cinnabar) 55%,transparent)}
   .b-loot{color:var(--gold);background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 38%,transparent)}
 
-  .facts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:9px;font-size:13.5px}
-  .fact{display:flex;gap:7px;align-items:baseline}
-  .fact .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;
+  .meta{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:9px;font-size:13.5px}
+  .m{display:flex;gap:7px;align-items:baseline}
+  .m .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;
     text-transform:uppercase;color:var(--muted);white-space:nowrap}
-  .fact .v{color:var(--body)}
-  .fact .v .key{color:var(--gold);font-weight:600}
   .turn{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--jade);font-weight:600}
   .turn.tight{color:var(--cinnabar)}
+  .key{color:var(--gold);font-weight:600}
 
-  .note{margin-top:11px;padding:12px 15px;border-radius:3px;font-size:13.5px;line-height:1.65;
+  .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-top:12px}
+  .blk{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:12px 14px;font-size:13px;line-height:1.6}
+  .blk .h{font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+  .blk ul{margin:0;padding-left:1.05em}
+  .blk li{margin:3px 0}
+  .blk li::marker{color:var(--jade)}
+  .blk b{color:var(--ink)}
+  .blk.ev li::marker{color:var(--cinnabar)}
+
+  .note{margin-top:12px;padding:13px 16px;border-radius:3px;font-size:13.5px;line-height:1.68;
     background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--jade)}
   .note.danger{border-left-color:var(--cinnabar);background:var(--cinnabar-soft);
     border-color:color-mix(in srgb,var(--cinnabar) 30%,transparent)}
   .note b{color:var(--ink)}
   .note .hd{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--jade);display:block;margin-bottom:5px}
+    text-transform:uppercase;color:var(--jade);display:block;margin-bottom:6px}
   .note.danger .hd{color:var(--cinnabar)}
   .note ul{margin:7px 0 0;padding-left:1.1em}
   .note li{margin:4px 0}
@@ -125,8 +134,7 @@
   .callout li{margin:5px 0}
   .callout li::marker{color:var(--jade)}
   .callout b{color:var(--ink)}
-
-  footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+  footer{margin-top:70px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
   footer h3{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
     text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:11px}
   footer ul{padding-left:1.1em}
@@ -136,16 +144,20 @@
 
 <div class="wrap">
 <header>
-  <div class="eyebrow">KOEI · 1995 · 전투 63개 전수 분석</div>
+  <div class="eyebrow">KOEI · 1995 · 전투 64개 전수 분석</div>
   <h1>영걸전 전투 대장
-    <span class="sub">서장 사수관부터 업의 3연전까지, 모든 맵의 승리 조건 · 턴 제한 · 일기토 · 회수품 · 분기를 한 줄씩 세어 정리했다. 한 회차에 실제로 치르는 전투는 약 50개다.</span>
+    <span class="sub">서장 사수관부터 업의 3연전까지, 모든 맵의 승리 조건 · 턴 제한 · 출전 부대수 · 턴별 이벤트 · 일기토 · 회수품 · 영입 조건을 한 판씩 세어 정리했다. 한 회차에 실제로 치르는 전투는 약 50개다.</span>
   </h1>
   <div class="stats">
-    <div class="stat"><b>63</b><span>전체 맵</span></div>
-    <div class="stat"><b>4+1</b><span>장 구성</span></div>
-    <div class="stat"><b>11</b><span>분기 · 선택지</span></div>
-    <div class="stat"><b>20</b><span>턴 (최단 · 양양)</span></div>
-    <div class="stat"><b>99</b><span>턴 (최장 · 장판파2)</span></div>
+    <div class="stat"><b>64</b><span>전체 맵</span></div>
+    <div class="stat"><b>18</b><span>막(幕)</span></div>
+    <div class="stat"><b>3</b><span>일기토 보상 아이템</span></div>
+    <div class="stat"><b>15</b><span>턴 (실질 최단 · 양양Ⅰ)</span></div>
+    <div class="stat"><b>6</b><span>부대 (최소 출전 · 맥성)</span></div>
+  </div>
+  <div class="vernote">
+    <span class="hd">판본에 대하여</span>
+    공식 핸드북은 <b>PC판과 콘솔판(SFC · PS · SS)의 전장 내 아이템과 책략 데이터가 서로 다르다</b>고 명시하고 있다. 아래 표에서 <b>회수품</b>은 한글판(PC) 기준이며, 다르게 알려진 경우 <b>콘솔판</b> 값을 함께 적었다. 승리 조건 · 턴 · 이벤트 · 일기토는 두 판본이 대체로 같다. 팬 개조판(리메이크 · 리파인)은 별개다.
   </div>
 </header>
 
@@ -153,13 +165,69 @@
   <span class="lbl">필터</span>
   <button class="fbtn" data-f="all" aria-pressed="true" type="button">전체</button>
   <button class="fbtn" data-f="loot" aria-pressed="false" type="button">핵심 회수품</button>
-  <button class="fbtn" data-f="branch" aria-pressed="false" type="button">분기 · 이벤트</button>
+  <button class="fbtn" data-f="branch" aria-pressed="false" type="button">분기 · 영입</button>
   <button class="fbtn" data-f="duel" aria-pressed="false" type="button">일기토</button>
   <button class="fbtn" data-f="trap" aria-pressed="false" type="button">함정</button>
   <span class="hits" id="hits"></span>
 </div>
 
 <div id="out"></div>
+
+<script>
+var CH=[{"arc": "서장", "t": "반동탁 연합군", "s": [{"n": 1, "name": "사수관", "jp": "汜水関", "win": "화웅 괴멸", "turn": 30, "units": 3, "ev": ["출전 부대는 유비(단병)·관우(경기병)·장비(경기병) 셋뿐"], "duel": ["관우 vs 화웅 — 관우가 화웅에게 인접하면 발생, 경험치 +100 (레벨 1 상승)"], "kr": "콩, 금100", "join": "", "tip": "출전 전 조조에게 금500을 받는다. 도구상에서 <b>콩 4개 + 술 1개</b>를 사서 관우·장비에게 들려라. <b>공손찬과 도겸에게는 말을 걸지 마라</b> — NPC로 참전해 경험치를 빼앗아 간다.<br><br>전방 보병 3부대는 <b>유비가 막타를 쳐서</b> 경험치를 몰아준다. 이후 궁병 이숙을 처리하고, 화웅은 병력이 넉넉히 남아 있는 동안 유비·장비로 반복 공격해 경험치를 벌어둔다. 콩으로 회복하며 계속 때릴 수 있다.<br><br>클리어 시 유비 Lv3 / 관우 Lv2 / 장비 Lv2가 기준선이다.", "flags": ["duel"]}, {"n": 2, "name": "호로관", "jp": "虎牢関", "win": "여포 퇴각", "turn": 30, "units": 3, "ev": [], "duel": ["장비 vs 여포"], "kr": "콩, 초열서", "join": "", "tip": "<b>여포는 격파할 수 없다.</b> 조건이 괴멸이 아니라 퇴각이라는 점을 기억하라.", "flags": ["duel"]}]}, {"arc": "제1장 · 제1막", "t": "계교 전투", "s": [{"n": 3, "name": "신도성", "jp": "信都", "win": "순우경 퇴각 <b>또는</b> 유비가 성문 도착", "turn": 30, "units": 4, "ev": [], "duel": ["장비 vs 순우경"], "kr": "술, 금100", "cs": "금200 / 술", "join": "<b>번궁</b> (무도가대 Lv4)", "tip": {"hd": "세 곳 중 여기가 정답", "body": "광천의 한영·곽적, 거록의 경무·관순은 상위 호환이 넘쳐나는 병과다. 출전 인원 제한 때문에 실전에서 쓸 일이 거의 없다. 반면 <b>번궁은 무도가대</b>로 이 시점에 대체재가 없다. 일본 공식 핸드북도 신도성을 추천한다."}, "flags": ["branch", "duel"], "badge": "branch"}, {"n": 4, "name": "광천", "jp": "広川", "win": "봉기 괴멸", "turn": 30, "units": 4, "ev": [], "duel": ["관우 vs 봉기"], "kr": "콩, 금100", "cs": "단패 / 반월창", "join": "한영(보병대) · 곽적(적병대) Lv4", "flags": ["branch", "duel"], "badge": "branch"}, {"n": 5, "name": "거록", "jp": "巨鹿", "win": "장합 퇴각 <b>또는</b> 유비가 서쪽 성채 도착", "turn": 30, "units": 5, "ev": ["<b>3턴째</b> 양군 원군 등장"], "duel": ["장비 vs 안량"], "kr": "보리", "cs": "보리", "join": "경무 · 관순 (Lv4)", "flags": ["branch", "duel"], "badge": "branch"}, {"n": 6, "name": "청하", "jp": "清河", "win": "국의 괴멸", "turn": 30, "units": 5, "ev": ["<b>7턴째</b> 적 원군 등장"], "duel": ["관우 vs 국의"], "kr": "금100, 술", "cs": "흙의 벽 / 금200", "join": "", "flags": ["duel"]}, {"n": 7, "name": "계교", "jp": "界橋", "win": "원소 퇴각 <b>또는</b> 유비가 군량창고 탈취", "turn": 40, "units": 5, "ev": ["<b>전투 개시 시</b> 조운이 원군으로 등장"], "duel": ["장비 vs 문추"], "kr": "화룡서, 장창, 보리, 연노", "cs": "수인서 / 장창술병법서 / 연노기 / 보리", "join": "<b>조운</b> (경기병 Lv11)", "tip": "조운이 원군으로 나오는 판이다. 군량창고 탈취가 대안 조건이니, 원소를 못 밀겠으면 창고로 달려라.", "flags": []}]}, {"arc": "제1장 · 제2막", "t": "북해 · 서주 원군", "s": [{"n": 8, "name": "북해", "jp": "北海", "win": "관해 괴멸", "turn": 30, "units": 6, "ev": ["유비군이 성에 접근하면 <b>농성 중이던 공융 · 태사자가 출진</b>"], "duel": ["조운 vs 관해"], "kr": "평기서, 특급주", "cs": "구(鈎) / 상처약", "join": "", "flags": ["duel"]}, {"n": 9, "name": "서주 (우금군)", "jp": "徐州Ⅰ", "win": "적 전멸 <b>또는</b> 유비가 서주성 입성", "turn": 30, "units": 7, "ev": ["<b>5턴째</b> 태사자가 원군으로 등장"], "duel": ["관우 vs 우금"], "kr": "—", "cs": "없음", "join": "손건(수송대 Lv10) · 미축 · 미방 (Lv13)", "flags": ["duel"]}, {"n": 10, "name": "소패", "jp": "小沛", "win": "조조 퇴각", "turn": 30, "units": 7, "ev": ["<b>10턴째</b> 여포에게 배후를 찔려 조조가 자동 퇴각"], "duel": ["장비 vs 하후연"], "kr": "—", "cs": "없음", "key": "자웅일대검 (전투 회피 시)", "join": "", "tip": {"hd": "싸우지 마라 — 첫 번째 영구 손실 지점", "body": "<b>장비의 제안(휴전)을 채택하면 전투 자체가 회피되고 도겸에게 「자웅일대검」을 받는다.</b><br><br>싸우기로 해도 10턴째에 조조군이 강제 퇴각하므로 전리품이 하나도 없다. 즉 <b>싸우면 순수 손해</b>다. 일본 공식 가이드도 회피를 권장한다. 자웅일대검은 게임 전체에서 여기서만 나온다."}, "flags": ["branch", "loot", "duel"], "badge": "branch", "hot": true}]}, {"arc": "제1장 · 제3막", "t": "아랑 여포의 내방 — 서주 산적 토벌", "s": [{"n": 11, "name": "태산", "jp": "泰山", "win": "적 전멸", "turn": 40, "units": 7, "ev": ["<b>두목 이명에게 유비가 접촉하면 이명이 항복</b> — 전멸시키지 말고 설득이 이득"], "duel": [], "kr": "폭탄, 낙석서", "cs": "함정서 / 폭탄", "join": "<b>이명</b> (맹수부대 Lv12)", "flags": ["branch"], "badge": "branch"}, {"n": 12, "name": "하구", "jp": "夏丘", "win": "적 전멸", "turn": 30, "units": 7, "ev": ["<b>두목 동량에게 유비가 접촉하면 동량이 항복</b>"], "duel": [], "kr": "소용돌이서", "cs": "풍무서", "join": "<b>동량</b> (산적 Lv12)", "flags": ["branch"], "badge": "branch"}, {"n": 13, "name": "팽성", "jp": "彭城", "win": "적 전멸", "turn": 30, "units": 7, "ev": ["<b>두목 조하에게 유비가 접촉하면 조하가 항복</b>", "클리어 후 백성들이 <b>궁술지침서</b>를 상납"], "duel": [], "kr": "검술지침서", "cs": "검술지남서", "key": "검술지침서", "join": "<b>조하</b> (산적 Lv12)", "tip": {"hd": "세 곳 중 최우선", "body": "하나만 깨도 진행되지만 <b>팽성은 검술지침서가 나오고, 클리어 후 궁술지침서까지 상납받는다.</b> 지침서 두 장이 걸린 유일한 맵이다. 여유가 되면 세 곳을 다 도는 것이 최선이며, 세 두목 모두 <b>유비 접촉으로 항복</b>시킬 수 있으니 전멸을 노리지 마라."}, "flags": ["branch", "loot"], "badge": "loot", "hot": true}]}, {"arc": "제1장 · 제4막", "t": "여포 토벌전", "s": [{"n": 14, "name": "회남 (하비 협공)", "jp": "淮南", "win": "적 전멸 <b>또는</b> 유비가 북서쪽 성채 도달", "turn": 30, "units": 9, "ev": ["<b>6턴째 여포가 유비를 배신</b>하고 부하를 적 원군으로 파견", "유비가 북서쪽 성채에 접근하면 <b>적 전군이 유비를 공격 목표로 삼는다</b>"], "duel": ["관우 vs 장료"], "kr": "업화서", "cs": "만궁", "join": "", "tip": "6턴째 배신이 확정 이벤트다. 그 전에 진형을 정리하고, 유비를 성채 쪽으로 보낼 거면 <b>적 전군이 유비만 노린다는 점</b>을 계산에 넣어라.", "flags": ["duel"]}, {"n": 15, "name": "하구 (여포 토벌)", "jp": "夏丘Ⅱ", "win": "장료 퇴각", "turn": 30, "units": 7, "ev": ["<b>5턴째</b> 적 별동대가 나타나 협공을 노린다"], "duel": ["관우 vs 장료"], "kr": "금400", "cs": "장극", "join": "", "flags": ["duel"]}, {"n": 16, "name": "팽성 (여포 토벌)", "jp": "彭城Ⅱ", "win": "고순 퇴각", "turn": 30, "units": 7, "ev": ["곽가 · 하후돈 · 하후연이 증원으로 등장"], "duel": ["장비 vs 고순"], "kr": "마개", "cs": "궁술지남서", "join": "", "flags": ["duel"]}, {"n": 17, "name": "하비 (최종)", "jp": "下邳", "win": "적교를 내린 뒤 여포 괴멸", "turn": 45, "units": 7, "ev": ["<b>유비가 후성 · 위속 · 송헌에게 접촉하면 배신</b>한다", "세 명을 배신시키면 성내로 돌아가 <b>적교를 내려준다</b>", "배신시키지 못하면 <b>30턴째에 적교가 자동으로 내려온다</b> — 남는 시간은 15턴뿐"], "duel": ["관우 vs 장료"], "kr": "방천화극, 적토마", "cs": "적토마 / 방천화극", "key": "적토마 · 방천화극", "join": "", "tip": {"hd": "이 게임 최대의 보물 맵", "body": "<b>적토마(이동 +3)와 방천화극이 같은 맵에 있다.</b> 게임 전체에서 이동력 아이템은 셋뿐이고 그중 최고가 여기 있다.<br><br><b>핵심은 적교다.</b> 유비를 후성 · 위속 · 송헌 세 명에게 접촉시켜 배신시키면 그들이 성내로 돌아가 적교를 내려준다. 배신시키지 못하면 30턴째까지 기다려야 하고, 여포 격파에 15턴밖에 안 남는다. <b>배신 공작이 곧 시간 확보</b>다.<br><br>적토마는 <b>맥성의 관우</b>에게 줄 것을 염두에 두고 보관하라.<br><br><b>SFC판 레벨 노가다</b> — 하비 전투에서 유비가 적장을 설득하면 레벨이 오른다. 퇴각 후 같은 전투를 반복하면 초반부터 무제한으로 키울 수 있다."}, "flags": ["loot", "duel", "branch"], "badge": "loot", "hot": true}]}, {"arc": "제1장 · 제5막", "t": "서주 공방전", "s": [{"n": 18, "name": "광릉", "jp": "広陵", "win": "원술 괴멸", "turn": 30, "units": 7, "ev": [], "duel": ["장비 vs 기영 — <b>장비가 이기면 삼첨도 획득</b>"], "kr": "금400, 칠성검", "cs": "칠성검 / 두자노 / 삼첨도", "key": "칠성검 (+ 삼첨도)", "join": "", "tip": "<b>일기토 승리 보상이 걸린 세 맵 중 하나.</b> 장비를 기영에게 붙여 이겨야 삼첨도가 나온다. 칠성검은 보물창고에 별도로 있다.", "flags": ["loot", "duel"], "badge": "loot", "hot": true}, {"n": 19, "name": "서주 (최종)", "jp": "徐州Ⅱ", "win": "차주 괴멸 → 유비 서주 입성 → 조조 퇴각 <b>또는</b> 남서쪽 마을 도착", "turn": 50, "units": 9, "ev": ["<b>적의 대원군이 등장</b>"], "duel": [], "kr": "—", "cs": "없음", "join": "", "tip": "<b>이길 생각을 버려라.</b> 조조의 대군이 나타난다. 남서쪽 마을로 도주하는 것이 정상 루트다.", "flags": []}, {"n": "※", "name": "막간 · 허창의 옥대", "jp": "玉帯", "win": "조조와의 대화 선택지", "turn": null, "units": null, "ev": [], "duel": [], "kr": "", "join": "", "tip": {"danger": true, "hd": "즉사 선택지", "body": "허창에서 조조와 대화할 때 <b>옥대를 「건넨다」를 고르면 유비가 처형되어 그 자리에서 게임오버</b>다.<br><br>원전은 『삼국지연의』 20회의 조조와 동승 이야기인데, 연의에서는 동승이 옥대를 건네고도 장치를 눈치채지 못해 돌려받는다. 즉 <b>연의를 아는 사람일수록 걸려드는 함정</b>으로 설계돼 있다. 반드시 「건네지 않는다」를 고를 것."}, "flags": ["trap", "branch"], "badge": "trap", "hot": true}]}, {"arc": "제2장 · 제1막", "t": "관도 전투", "s": [{"n": 20, "name": "연주", "jp": "兗州", "win": "곽도 퇴각 <b>또는</b> 유비가 남서쪽 성채 도달", "turn": 45, "units": 9, "ev": ["<b>전투 개시 시</b> 조운 등장", "<b>5턴째</b> 원군 등장"], "duel": ["조운 vs 장합"], "kr": "폭탄, 차", "cs": "상처약 / 산적의 맹세", "join": "조운", "flags": ["duel"]}, {"n": 21, "name": "고성", "jp": "古城", "win": "적 수령 ??? 에게 접촉", "turn": 40, "units": 7, "ev": ["아군이 적 수령에게 접촉하면 <b>정체가 밝혀진다</b> (장비)"], "duel": [], "kr": "검술지침서, 설붕서, 특급주", "cs": "이문화의 인 / 소백룡서 / 한방약", "key": "검술지침서", "join": "장비", "flags": ["loot"]}, {"n": 22, "name": "영천", "jp": "潁川", "win": "채양 괴멸", "turn": 30, "units": 8, "ev": ["<b>8턴째</b> 관우 일행이 원군으로 등장"], "duel": ["관우 vs 채양"], "kr": "산사태서", "cs": "맹덕신서", "join": "관우 · 관평 · 주창", "flags": ["duel"]}, {"n": 23, "name": "여남", "jp": "汝南", "win": "조인 퇴각 <b>또는</b> 유비가 남서쪽 성채 도달", "turn": 40, "units": 9, "ev": ["<b>3턴째</b> 유표에게 사자로 갔던 손건이 귀환"], "duel": ["조운 vs 허저"], "kr": "고취구", "cs": "전차술병법서", "key": "고취구 (한글판)", "join": "유벽", "tip": "한글판에서는 고취구가 여기서 나온다. <b>고취구는 여남과 공안 두 곳뿐</b>이며, 1599 플레이의 필수 아이템이다. (콘솔판에서는 강하에서 나온다 — 판본 차이)", "flags": ["loot", "duel"], "badge": "loot"}]}, {"arc": "제2장 · 제2막", "t": "신야 복재", "s": [{"n": 24, "name": "강하", "jp": "江夏", "win": "장무 괴멸", "turn": 40, "units": 10, "ev": [], "duel": ["장비 vs 진손", "조운 vs 장무 — <b>조운이 이기면 적로 획득</b>"], "kr": "의협교본, 보병차, 금400", "cs": "고취구 / 대지할서 / 금500 / 적로", "key": "적로 (일기토 보상)", "join": "", "tip": {"hd": "적로가 걸린 일기토", "body": "<b>조운 vs 장무 일기토에서 조운이 이겨야 적로(이동 +2)가 나온다.</b> 붙이기만 하는 게 아니라 <b>이겨야</b> 한다는 점이 중요하다. 조운의 레벨과 장비를 미리 챙겨서 들어가라.<br><br>그냥 클리어하면 게임 내 3개뿐인 말 아이템 중 하나가 영구히 사라진다."}, "flags": ["loot", "duel"], "badge": "loot", "hot": true}, {"n": 25, "name": "남양", "jp": "南陽", "win": "조인 퇴각", "turn": 40, "units": 10, "ev": ["<b>서서가 조인의 진형을 간파</b>한다 (우군으로 활약 후 이탈)"], "duel": ["조운 vs 여광", "장비 vs 여상"], "kr": "—", "cs": "없음", "join": "서서(우군)", "tip": {"danger": true, "hd": "진행 불가 버그", "body": "치트 · 숨겨진 요소를 사용한 상태에서 <b>유비로 조인을 퇴각시키면 게임이 더 이상 진행되지 않는다.</b> 조인 처리는 다른 무장에게 맡겨라.<br><br>서서는 여기서 이탈했다가 <b>제4장 장안 / 낙양에서 아군이 접촉하면 재합류</b>한다."}, "flags": ["trap"], "badge": "trap"}]}, {"arc": "제2장 · 제3막", "t": "와룡공명의 출려", "s": [{"n": "—", "name": "삼고초려", "jp": "—", "win": "전투 없음", "turn": null, "units": null, "ev": [], "duel": [], "kr": "", "join": "제갈량", "tip": "이 막에는 전투가 없다. 상점 정비와 아이템 재배분에 쓸 마지막 여유 구간이다.", "flags": []}]}, {"arc": "제2장 · 제4막", "t": "조조의 남정", "s": [{"n": 26, "name": "박망파", "jp": "博望坡", "win": "하후돈 퇴각", "turn": 40, "units": 8, "ev": ["제갈량이 미리 걸어둔 <b>화계가 대폭발</b>해 적이 대혼란에 빠진다"], "duel": ["관우 vs 이전"], "kr": "—", "cs": "없음", "join": "", "flags": ["duel"]}, {"n": 27, "name": "신야 Ⅰ", "jp": "新野Ⅰ", "win": "하후돈 퇴각 <b>또는</b> 제갈량이 군량고 탈취", "turn": 40, "units": 11, "ev": ["<b>8턴째</b> 적 원군 등장", "<b>30턴째</b> 적군 총퇴각"], "duel": ["장비 vs 우금"], "kr": "—", "cs": "없음", "join": "", "tip": "30턴째 총퇴각이 확정이므로 <b>실질적으로 자동 클리어</b>되는 판이다. 남는 턴을 레벨업에 써라.", "flags": ["duel"]}, {"n": 28, "name": "양양 Ⅰ", "jp": "襄陽Ⅰ", "win": "채모 괴멸", "turn": 20, "units": 12, "ev": ["<b>15턴째에 퇴각을 강요당한다</b> — 실질 제한은 15턴"], "duel": ["조운 vs 장윤"], "kr": "업화서, 차, 의천검", "cs": "구명약 / 통수개 / 의천검", "key": "의천검", "join": "", "tip": {"danger": true, "hd": "실질 15턴 — 전체 최악의 회수 난이도", "body": "표기는 20턴이지만 <b>15턴째에 강제 퇴각</b>당한다. 하필 이 맵에 의천검이 있다.<br><br>1턴째부터 보물창고 경로를 역산하고, <b>보물창고가 일반 지형보다 이동력을 더 먹는다</b>는 점을 반드시 계산에 넣어라. 회수조를 채모 공략조와 분리해 첫 턴부터 창고로 직행시키는 것이 정석이다."}, "flags": ["loot", "duel", "trap"], "badge": "trap", "hot": true, "tight": true}, {"n": 29, "name": "장판파 Ⅰ", "jp": "長坂坡Ⅰ", "win": "조조 퇴각 <b>또는</b> 백성을 남동쪽 마을로 탈출", "turn": 70, "units": 12, "ev": ["백성을 <b>1부대라도</b> 남동쪽 마을에 도달시키면 탈출 성공"], "duel": [], "kr": "—", "cs": "없음", "join": "", "flags": []}, {"n": 30, "name": "장판파 Ⅱ", "jp": "長坂坡Ⅱ", "win": "조조 퇴각 <b>또는</b> 백성을 북서쪽 다리로 탈출", "turn": 99, "units": null, "ev": ["백성을 <b>1부대라도</b> 북서쪽 다리에 도달시키면 탈출 성공"], "duel": ["조운 vs 하후은 — <b>조운이 이기면 청강검 획득</b>"], "kr": "—", "cs": "청강검", "key": "청강검 (일기토 보상)", "join": "", "tip": {"hd": "누락되기 쉬운 일기토 보상", "body": "<b>조운이 하후은과의 일기토에서 이겨야 청강검이 나온다.</b> 승리 조건이 「백성 탈출」이라 그냥 도망만 치고 끝내기 쉬운데, 그러면 청강검을 통째로 놓친다.<br><br>99턴이나 주어지므로 시간은 넉넉하다. <b>조운을 하후은에게 붙여 이기고 나서</b> 백성을 탈출시켜라. 70턴 · 99턴 두 판 모두 레벨업 기회로도 좋다."}, "flags": ["loot", "duel"], "badge": "loot", "hot": true}]}, {"arc": "제3장 · 제1막", "t": "형주남부 평정전", "s": [{"n": 31, "name": "강릉", "jp": "江陵", "win": "진교 괴멸 → 주유 퇴각", "turn": 30, "units": 9, "ev": ["<b>8턴째</b> 주유가 이끄는 오군이 등장"], "duel": ["조운 vs 감녕"], "kr": "궁술지침서", "cs": "조술지남서", "key": "궁술지침서", "join": "", "flags": ["loot", "duel"]}, {"n": 32, "name": "무릉", "jp": "武陵", "win": "금선 괴멸 <b>또는</b> 적 항복", "turn": 35, "units": 7, "ev": ["<b>유비가 공지에게 접촉해 설득하면 공지가 반란을 일으켜 전투가 즉시 종료</b>"], "duel": ["주창 vs 금선"], "kr": "투석기, 금500", "cs": "금500 / 투석기", "join": "공지", "flags": ["branch", "duel"]}, {"n": 33, "name": "영릉", "jp": "零陵", "win": "유도 괴멸 <b>또는</b> 적 항복", "turn": 35, "units": 7, "ev": ["<b>맵 중앙의 마을을 넘으면 적 원군 등장</b>", "유비가 유도에게 접촉하면 적군 항복"], "duel": ["관평 vs 형도영"], "kr": "원대서", "cs": "물의 힘", "join": "", "flags": ["branch", "duel"]}, {"n": 34, "name": "계양", "jp": "桂陽", "win": "조범 괴멸 <b>또는</b> 적 항복", "turn": 35, "units": 7, "ev": ["<b>맵 우상단의 마을을 넘으면 적 원군 등장</b>", "유비가 조범에게 접촉하면 적군 항복"], "duel": ["유봉 vs 포용"], "kr": "탁류서", "cs": "요술의 약", "join": "", "flags": ["branch", "duel"]}, {"n": 35, "name": "장사", "jp": "長沙", "win": "한현 괴멸 <b>또는</b> 적 항복", "turn": 40, "units": 11, "ev": ["<b>위연은 관우와 황충의 일기토 이후, 또는 유비가 접촉한 뒤 모반</b>한다"], "duel": ["관우 vs 황충"], "kr": "영걸검, 검술지침서", "cs": "영걸검 / 독각선풍포", "key": "영걸검", "join": "<b>황충 · 위연</b>", "tip": {"hd": "형주 4군은 전부 설득이 정답", "body": "31~35는 모두 「괴멸 <b>또는</b> 항복」 이중 조건이다. <b>유비를 적장에게 붙여 설득하는 쪽이 언제나 이득</b> — 경험치도 들어오고 무장도 얻는다.<br><br>특히 장사에서 <b>황충과 위연</b>이 이 방식으로 들어온다. 위연은 관우 vs 황충 일기토를 먼저 성사시키거나 유비가 접촉해야 모반한다. <b>급하게 한현을 괴멸시키면 둘 다 놓친다.</b><br><br>영릉과 계양은 특정 마을을 넘는 순간 적 원군이 나오니, 회수와 설득을 먼저 끝낸 뒤 넘어가라."}, "flags": ["loot", "duel", "branch"], "badge": "loot", "hot": true}]}, {"arc": "제3장 · 제2막", "t": "형주 영유권 분쟁", "s": [{"n": 36, "name": "공안", "jp": "公安", "win": "주유 퇴각 <b>또는</b> 4개 성채 점령", "turn": 40, "units": 12, "ev": ["<b>숲을 넘어 오군에게 발각되면 오군의 대공세가 시작된다</b>"], "duel": ["관우 vs 여몽"], "kr": "고취구, 해일서", "cs": "산적의 맹세 / 대수인서", "key": "고취구", "join": "", "tip": "<b>숲을 넘는 순간 오군 대공세가 시작된다.</b> 진형이 갖춰지기 전에 발각되면 그대로 무너진다. 고취구가 나오는 마지막 맵이므로 여남(23)에서 놓쳤다면 여기가 유일한 기회다.", "flags": ["loot", "duel"], "badge": "loot"}]}, {"arc": "제3장 · 제3막", "t": "익주 공략전", "s": [{"n": 37, "name": "낙성 Ⅰ (낙봉파)", "jp": "雒Ⅰ", "win": "유괴 퇴각", "turn": 30, "units": 11, "ev": ["<b>방통이 전투 개시 시점부터 적군에 포위된 채 시작</b>한다", "여기서 빠져나가지 못하면 방통 전사"], "duel": [], "kr": "—", "cs": "없음", "join": "", "tip": {"hd": "방통 생사 분기 — 8턴", "body": "<b>방통의 별동대가 유비 본대와 떨어진 위치에서, 처음부터 포위된 채 시작</b>한다. 장임의 복병이 성공하면 그대로 갇힌다.<ul><li><b>8턴 안에 방통이 퇴각하면 사망 처리</b>된다.</li><li>8턴을 버티면 장임의 두 번째 계략(군량고 탈취)이 성공하면서 <b>방통이 죽지 않고 전군 퇴각</b>한다.</li><li>적 주장 <b>유괴를 격퇴하면 적들이 성에서 나오지 않는다</b> — 버티기가 훨씬 쉬워진다.</li><li>방통 사망 시 생존 부대는 경험치 +50.</li></ul>", "table": {"head": ["선택", "얻는 것", "잃는 것"], "rows": [["방통 생존", "후반 광역 책략 <b>폭풍</b>, 제4장 <b>별동대 총대장</b>", "봉황깃옷"], ["방통 사망", "<b>봉황깃옷</b> (최대 HP +160, 7레벨 이후 +80 추가)", "방통, 총대장은 조운이 대신"]]}, "tail": "일반적으로는 <b>생존 쪽이 낫다.</b> 봉황깃옷은 강력하지만 무장 하나와 총대장 자리를 대체하지 못한다."}, "flags": ["branch", "trap"], "badge": "branch", "hot": true}, {"n": 38, "name": "낙성 Ⅱ", "jp": "雒Ⅱ", "win": "유괴 괴멸", "turn": 40, "units": 9, "ev": ["<b>2턴째</b> 조운 · 제갈량 등의 원군 등장", "<b>13턴 이내</b> 적 원군도 등장", "<b>유비가 오의 · 비관 · 오란 · 이엄을 설득하면 아군이 된다</b>"], "duel": ["장비 vs 장임"], "kr": "—", "cs": "없음", "join": "<b>오의 · 비관 · 오란 · 이엄</b> (유비 설득)", "tip": "보물은 없지만 <b>무장 넷을 설득으로 얻을 수 있는 맵</b>이다. 유비를 안전하게 굴려 오의·비관·오란·이엄에게 차례로 붙여라.", "flags": ["branch", "duel"], "badge": "branch"}, {"n": 39, "name": "가맹관 Ⅰ", "jp": "葭萌関Ⅰ", "win": "장로 퇴각", "turn": 30, "units": 10, "ev": ["<b>가맹관 내부 중앙보다 안쪽으로 진입하면 적 원군이 관 밖에 등장</b>"], "duel": ["장비 vs 마초"], "kr": "원군보고", "cs": "원군보고", "key": "원군보고", "join": "마초", "flags": ["loot", "duel"], "badge": "loot"}, {"n": 40, "name": "성도", "jp": "成都", "win": "유장 항복", "turn": 40, "units": 9, "ev": ["<b>맹달 · 황권 · 곽준 · 오반 · 진식 · 사마가를 유비가 설득하면 적군이 항복</b>"], "duel": [], "kr": "투석기, 보병차", "cs": "준마 / 금의 독", "join": "<b>맹달 · 황권 · 곽준 · 오반 · 진식 · 사마가</b>", "tip": {"hd": "싸울 것인가 설득할 것인가", "body": "가맹관(39) 이후 <b>「마초를 보낸다 / 보내지 않는다」</b> 선택지가 뜬다.", "table": {"head": ["선택", "결과"], "rows": [["마초를 보낸다", "<b>조황비전(이동 +1)</b> 획득 + <b>성도 전투 스킵</b>"], ["보내지 않는다", "성도 전투 진행. <b>맹달 · 황권 · 곽준 · 오반 · 진식 · 사마가</b>를 유비가 설득해 아군화"]]}, "tail": "<b>여섯 명이 걸려 있다.</b> 말 아이템 하나와 무장 여섯을 저울질하는 선택이다. 병력이 부족하다고 느낀다면 파견하지 말고 싸우는 쪽이 낫다."}, "flags": ["branch"], "badge": "branch", "hot": true}]}, {"arc": "제3장 · 제4막", "t": "한중 공방전", "s": [{"n": 41, "name": "와구관 Ⅰ", "jp": "瓦口関Ⅰ", "win": "장합 퇴각", "turn": 40, "units": 12, "ev": ["<b>전투 개시 시 적 복병이 등장</b>"], "duel": ["뇌동 vs 장합"], "kr": "—", "cs": "없음", "join": "", "flags": ["duel"]}, {"n": 42, "name": "와구관 Ⅱ", "jp": "瓦口関Ⅱ", "win": "장합 퇴각", "turn": 40, "units": null, "ev": [], "duel": ["뇌동 vs 장합"], "kr": "칙명서, 업화서", "cs": "칙명서 / 대지할서", "key": "칙명서 (중간 섬)", "join": "", "tip": {"danger": true, "hd": "보물고가 맵 한가운데 섬에 있다", "body": "<b>이동 계획 없이는 절대 못 먹는다.</b> 승리 조건(장합 퇴각)을 먼저 달성해버리면 그대로 전투가 끝난다.<br><br>회수조를 따로 편성해 섬으로 보낸 뒤에 장합을 처리하라. 칙명서(턴마다 사기 회복)는 여기서만 나온다."}, "flags": ["loot", "trap"], "badge": "trap", "hot": true}, {"n": 43, "name": "가맹관 Ⅱ", "jp": "葭萌関Ⅱ", "win": "하후덕 괴멸", "turn": 35, "units": 10, "ev": ["<b>5턴 · 10턴 · 15턴째에 적 복병이 출현</b>"], "duel": ["엄안 vs 하후덕"], "kr": "해일서, 쌀, 근위개, 빼갈", "cs": "구겸창 / 노주 / 한방약 / 풍기서", "join": "", "tip": "5·10·15턴 복병이 확정 이벤트다. 아이템이 넷이나 되니 <b>복병 타이밍을 피해 회수 동선</b>을 짜라.", "flags": ["duel"]}, {"n": 44, "name": "천탕산 Ⅰ", "jp": "天蕩山Ⅰ", "win": "서황 퇴각", "turn": 40, "units": 12, "ev": ["<b>8턴째</b> 하후연 · 장합 등 7부대가 원군으로 등장", "<b>유비가 왕평에게 접촉하면 신하가 되어 함께 싸운다</b>"], "duel": ["황충 vs 하후연"], "kr": "한방약", "cs": "구명약", "join": "<b>왕평</b> (유비 접촉)", "flags": ["branch", "duel"]}, {"n": 45, "name": "정군산", "jp": "定軍山", "win": "하후연 괴멸", "turn": 35, "units": 13, "ev": ["<b>8턴째</b> 서황 · 왕평 등 7부대가 적 원군으로 등장", "<b>유비가 왕평에게 접촉하면 신하가 된다</b>"], "duel": ["황충 vs 하후연"], "kr": "금800, 산사태서, 청랑서", "cs": "청양서 / 금800 / 무적신패", "key": "청랑서", "join": "<b>왕평</b> (유비 접촉)", "tip": "청랑서는 정군산과 제4장 양양, <b>두 곳에서만</b> 나온다. 1599 플레이를 노린다면 절대 스킵 불가한 맵이다. 왕평은 천탕산Ⅰ과 여기 둘 중 어디서든 유비 접촉으로 얻는다.", "flags": ["loot", "duel", "branch"], "badge": "loot"}, {"n": 46, "name": "천탕산 Ⅱ", "jp": "天蕩山Ⅱ", "win": "하후덕 괴멸", "turn": 40, "units": 10, "ev": [], "duel": ["엄안 vs 하후덕"], "kr": "한방약", "cs": "구명약", "join": "", "flags": ["duel"]}, {"n": 47, "name": "한수", "jp": "漢水", "win": "조홍 퇴각", "turn": 40, "units": 13, "ev": ["<b>10턴째</b> 조창이 이끄는 적 원군 8부대 등장"], "duel": ["오란 vs 조창"], "kr": "금1000, 차", "cs": "쌀 / 금1000", "join": "", "flags": ["duel"]}, {"n": 48, "name": "양평관", "jp": "陽平関", "win": "조조 퇴각", "turn": 45, "units": 14, "ev": [], "duel": ["마초 vs 방덕"], "kr": "마술지침서", "cs": "마술지남서", "key": "마술지침서", "join": "", "flags": ["loot", "duel"]}]}, {"arc": "제3장 · 제5막", "t": "촉한 건국", "s": [{"n": 49, "name": "맥성", "jp": "麦", "win": "적 전멸 <b>또는</b> 관우가 서쪽 성채 도달", "turn": 50, "units": 6, "ev": ["<b>1턴째 조인이 이끄는 위군이 배후에 적 원군으로 등장</b>"], "duel": [], "kr": "원군서 ×2, 차", "cs": "한방약 / 대업화서 / 쌀", "join": "", "tip": {"hd": "이 게임의 축 — 출전 6부대뿐", "body": "<b>관우 · 장비 · 관평 · 주창 · 왕보 · 요화 · 조루의 생사, 장료 영입 가능 여부, 그리고 엔딩이 전부 여기서 결정된다.</b><br><br><b>관우 생존 조건 — 둘 중 하나만</b><ul><li>적 전멸</li><li><b>관우가 서쪽 성채(맵 서쪽 끝)에 도달</b></li></ul>관우가 퇴각당하면 그 자리에서 사망한다. 게다가 <b>1턴째부터 조인의 위군이 배후에 나타난다</b> — 앞뒤로 끼인 상태에서 시작하는 판이다. 출전은 <b>6부대뿐</b>이라 물량으로 밀 수도 없다.<br><br><b>사전 준비가 전부다.</b><ul><li>하비(17)에서 얻은 <b>적토마를 관우에게</b> — 가장 확실한 해법</li><li>일본 공식 핸드북의 권고: <b>맥성에 대비해 관우를 보병대나 궁병대로 바꿔둘 것.</b> 이 게임은 무력이 높은 무장을 기병대에 배속하는 경향이 있는데, 관우를 보병/궁병으로 돌리면 기본 보병·궁병보다 잘 싸운다</li><li>관우는 앞선 여러 전투에 결장하므로 레벨과 아이템을 미리 몰아줄 것</li></ul>", "table": {"head": ["관우", "오와의 관계", "결과"], "rows": [["생존", "동맹", "<b>손자의 병법서</b>(방어 +22%) · 서릉 스킵 · 즉시 제4장"], ["생존", "결전", "장비가 전투 직전 합류 · 서릉(50) 진행"], ["사망", "동맹", "<b>손자의 병법서</b> · 서릉 스킵 · 즉시 제4장"], ["사망", "결전", "<b>장비 암살</b> · 서릉(50) 진행"]]}, "tail": "오와의 동맹은 관우 생사와 무관하게 고를 수 있고, 고르면 병법서를 받고 전투가 스킵된다. <b>관우를 살리면 장비도 산다.</b> 이후에는 무슨 선택을 하든 이기기만 하면 해피엔딩이다."}, "flags": ["branch", "trap"], "badge": "branch", "hot": true}, {"n": 50, "name": "서릉", "jp": "西陵", "win": "손항 퇴각", "turn": 40, "units": 9, "ev": ["<b>전투 개시 시</b> 유선 · 관흥 · 장포가 원군으로 등장"], "duel": ["장포 vs 사정", "관흥 vs 이이"], "kr": "—", "cs": "없음", "join": "유선 · 관흥 · 장포", "tip": "오와 동맹을 맺으면 이 전투는 스킵된다.", "flags": ["duel"]}, {"n": 51, "name": "이릉", "jp": "夷陵", "win": "육손 퇴각", "turn": 50, "units": 15, "ev": ["<b>전투 개시 시 육손의 계략에 걸려 전군이 화염에 휩싸이고 내구력이 격감</b>한다"], "duel": ["주태 vs 사마가"], "kr": "—", "cs": "없음", "join": "", "tip": {"danger": true, "hd": "시작하자마자 전군 내구력 격감 + 패배 전용 배드엔딩", "body": "<b>전투 개시 시점에 육손의 화계로 전군의 내구력이 급감한 채 시작</b>한다. 회복 아이템을 충분히 들고 들어가지 않으면 그대로 무너진다.<br><br>이릉에서 패배하면 게임오버가 아니라 별도의 배드엔딩 <b>「물거품의 꿈(うたかたの夢)」</b>으로 끝난다. 모르고 지나가면 그대로 회차가 종료된다."}, "flags": ["trap", "duel"], "badge": "trap", "hot": true}]}, {"arc": "제4장 · 제1막", "t": "형주 탈환", "s": [{"n": 52, "name": "양양 Ⅱ", "jp": "襄陽Ⅱ", "win": "조인 괴멸", "turn": 40, "units": 8, "ev": ["아군이 성내로 돌입하면 적 원군 등장", "<b>어떤 조건을 만족하면 수수께끼의 무장이 장외에 추가로 등장</b>한다"], "duel": ["??? vs 조인"], "kr": "마술지침서, 청랑서, 차", "cs": "구명약 / 청룡극 / 나무의 빛", "key": "마술지침서 · 청랑서", "join": "", "tip": "<b>청랑서가 나오는 마지막 맵</b>이다(정군산과 여기 둘뿐). 조건부로 등장하는 수수께끼 무장 이벤트가 걸려 있으니 성내 돌입 전에 진형을 정리하라.", "flags": ["loot", "duel"], "badge": "loot"}, {"n": 53, "name": "신야 Ⅱ", "jp": "新野Ⅱ", "win": "우금 퇴각 <b>또는</b> 아군이 군량고 탈취", "turn": 40, "units": 10, "ev": ["<b>8턴째</b> 적 원군 등장"], "duel": ["장비 vs 우금"], "kr": "용기서", "cs": "선술의 약", "join": "", "tip": "<b>신야(53) 또는 남사(54) 종료 후 감녕 · 능통 · 서성 · 정봉이 레벨 40 전후로 합류</b>한다.", "flags": ["duel"]}, {"n": 54, "name": "남사", "jp": "南糸", "win": "서황 퇴각 <b>또는</b> 10턴 이내 두 성채 점거", "turn": 30, "units": 7, "ev": ["<b>10턴째 서황의 수계 발동 — 아군 내구력이 반감되고 적 원군이 등장</b>"], "duel": ["장포 vs 하후상"], "kr": "해일서, 원대서, 금2000", "cs": "금2000 / 물의 칼 / 풍기서", "join": "", "tip": {"danger": true, "hd": "10턴이 실질 데드라인", "body": "<b>10턴 이내에 두 성채를 점거하면 즉시 승리</b>한다. 못 하면 10턴째에 서황의 수계로 <b>아군 전체 내구력이 반감</b>되고 적 원군까지 들어온다.<br><br>회수품이 셋이나 되므로, 성채 점거조와 보물 회수조를 처음부터 분리해 동시에 굴려야 한다. 이 맵만 30턴으로 짧다."}, "flags": ["loot", "duel", "trap"], "badge": "trap", "hot": true, "tight": true}, {"n": 55, "name": "완 Ⅰ (성외)", "jp": "宛Ⅰ", "win": "장료 퇴각", "turn": 40, "units": 10, "ev": ["<b>8턴째</b> 악진 등이 적 원군으로 등장", "<b>10턴째</b> 이전이 이끄는 적 원군 등장"], "duel": ["장비 vs 장료"], "kr": "폭탄, 원대서, 업화서", "cs": "폭탄 / 백은의 갑 / 소흑룡서", "join": "", "flags": ["duel"]}, {"n": 56, "name": "완 Ⅱ (성내)", "jp": "宛Ⅱ", "win": "하후돈 퇴각", "turn": 30, "units": 10, "ev": ["<b>아군이 하후돈에게 접근하면 어떤 인물이 등장</b>한다 (조건 있음)"], "duel": ["장비 vs 서황", "관우 vs 하후돈"], "kr": "마술지침서, 둔갑천서, 검술지침서", "cs": "둔갑천서 / 이문화의 서 / 요술의 약", "key": "둔갑천서", "join": "관평 · 주창 · 왕보 · 요화 · 조루 (관우 생존 시)", "tip": {"hd": "둔갑천서가 나오는 유일한 맵", "body": "<b>주술사로 전직시키는 「둔갑천서」가 게임 전체에서 여기서만 나온다.</b> 게다가 이 맵만 30턴으로 짧은데 보물이 셋이다.<br><br>주술사는 후반에 최강 사기 책략 <b>낙뢰</b>를 배워 사실상 밸런스를 붕괴시키는 병과다. 상성이 없어 맞상성으로 얻어맞지 않고, 레벨업당 병력 증가(+50)도 다른 보조계(+40)보다 높다. <b>이 맵을 대충 넘기면 그 회차에서 주술사를 볼 수 없다.</b><br><br><b>관우 생존</b> 상태로 이 전투를 끝내면 관평 · 주창 · 왕보 · 요화 · 조루가 허창부터 합류한다."}, "flags": ["loot", "duel"], "badge": "loot", "hot": true, "tight": true}]}, {"arc": "제4장 · 제2막", "t": "중원의 사투 — 별동대 분기", "s": [{"n": "★", "name": "제갈량의 물음", "jp": "—", "win": "관중에 별동대를 보낼 것인가, 전군으로 칠 것인가", "turn": null, "units": null, "ev": [], "duel": [], "kr": "", "join": "", "tip": {"hd": "파견하면 진창 · 장안이 열리고 낙양이 스킵된다", "body": "두 전투는 연전이며 <b>관중 별동대의 고정 멤버로만</b> 싸워야 한다. 총대장은 방통(생존 시) / 조운(사망 시).<br><br><b>파견을 권한다.</b> 육도 · 삼략은 진창에서만 나오고, <b>강유도 진창에서만 얻는다.</b> 다만 PC판은 이민족이 본대 합류 시점에 빠지므로 그쪽 기대치는 낮춰 잡을 것."}, "flags": ["branch"], "badge": "branch", "hot": true}, {"n": 57, "name": "진창 (파견 시)", "jp": "陳倉", "win": "학소 괴멸", "turn": 30, "units": 9, "ev": ["<b>아군 부대가 강유에게 접촉하면 강유가 아군이 된다</b>", "<b>마초가 장획 · 정덕 · 고창 중 한 명에게 접촉하면 이민족 3인 전원이 배신</b>"], "duel": ["위연 vs 학소 — 승리 조건 그 자체"], "kr": "육도, 삼략, 궁술지침서", "cs": "육도 / 삼략 / 대업화서", "key": "육도 · 삼략", "join": "<b>강유</b>, 장획 · 정덕 · 고창", "tip": {"hd": "강유가 나오는 유일한 맵", "body": "<ul><li><b>아군 부대를 강유에게 접촉시키면 강유가 합류한다.</b> 별동대를 보내지 않으면 강유를 아예 얻을 수 없다.</li><li><b>마초가 장획 · 정덕 · 고창 중 한 명에게라도 인접하면 이민족 전원이 아군</b>이 된다.</li><li>⚠️ <b>PC판에서는 별동대가 본대에 합류하는 시점에 이민족이 아군에서 빠진다.</b> 콘솔판에서는 끝까지 남는다.</li><li>위연 vs 학소 일기토가 곧 승리 조건이다. 위연이 시종일관 밀리다가 결정적 순간에 학소의 지병이 도져 끝난다. <b>져도 되는 연출이니 당황하지 말 것.</b></li><li><b>육도 · 삼략(각 방어 +15%)은 이 맵에서만 나온다.</b></li></ul>"}, "flags": ["loot", "duel", "branch"], "badge": "loot", "hot": true}, {"n": 58, "name": "장안 (파견 시)", "jp": "長安", "win": "조진 괴멸", "turn": 60, "units": null, "ev": ["<b>아군 부대가 서서에게 접촉하면 서서가 합류</b>한다"], "duel": ["조운 vs 장합"], "kr": "원군서", "cs": "구명약", "join": "<b>서서</b> (접촉)", "tip": "남양(25)에서 이탈한 서서를 되찾는 자리다. <b>접촉이 조건</b>이므로 서서 위치를 확인하고 부대를 붙여라.", "flags": ["duel", "branch"]}, {"n": 59, "name": "낙양 (미파견 시)", "jp": "洛陽", "win": "조진 괴멸", "turn": 40, "units": 10, "ev": ["<b>아군 부대가 서서에게 접촉하면 서서가 합류</b>한다"], "duel": ["조운 vs 장합"], "kr": "원군서, 금2000", "cs": "금2000 / 금의 독", "join": "<b>서서</b> (접촉)", "tip": "별동대를 파견하면 이 전투가 스킵된다. 서서 재합류 기회는 여기에도 있다.", "flags": ["duel", "branch"]}, {"n": 60, "name": "허창 Ⅰ (성외)", "jp": "許昌Ⅰ", "win": "사마의 퇴각", "turn": 40, "units": 10, "ev": ["<b>별동대 작전이 실패했을 경우, 사마의가 12턴째에야 등장</b>한다"], "duel": ["관흥 vs 허저"], "kr": "궁술지침서, 검술지침서", "cs": "무술지남서 / 철구거", "join": "", "flags": ["loot", "duel"]}, {"n": 61, "name": "허창 Ⅱ (성내)", "jp": "許昌Ⅱ", "win": "아군이 안쪽 성문에 도달 → 사마의 퇴각", "turn": 40, "units": 13, "ev": ["조비는 전투 개시 직후 업으로 도주", "황충 · 엄안이 조비가 빠져나간 곳으로 성내에 진입해 성문을 열어젖히지만……", "<b>관우가 장료에게 접촉하면 장료가 아군이 된다</b>"], "duel": ["관우 vs 장료"], "kr": "옥새", "cs": "옥새", "key": "옥새", "join": "<b>장료</b> (관우 접촉)", "tip": {"hd": "관우가 살아 있으면 장료가 온다", "body": "<b>관우 생존 상태에서 관우를 장료에게 접촉시키면 장료가 아군이 된다.</b> 맥성에서 관우를 살린 보상이 여기서 현금화된다. 자동 이벤트가 아니라 <b>직접 붙여야</b> 한다는 점이 중요하다.<br><br>옥새(턴마다 병력 + 사기 회복)도 여기서 나온다. 다만 원군보고 · 칙명서 · 옥새의 <b>회복 효과는 한 무장에게 몰아줘도 중첩되지 않는다.</b> 각각 다른 무장에게 분산시켜라."}, "flags": ["loot", "duel", "branch"], "badge": "loot", "hot": true}]}, {"arc": "제4장 · 제3막", "t": "촉 · 위 최종결전", "s": [{"n": 62, "name": "업 Ⅰ", "jp": "鄴Ⅰ", "win": "조비 괴멸", "turn": 40, "units": 15, "ev": [], "duel": ["장포 vs 조창", "관흥 vs 조식"], "kr": "원군서, 패자검", "cs": "패자의 검 / 구명약", "key": "패자검", "join": "", "tip": {"hd": "게임 최강 공격 아이템", "body": "<b>패자검(공격 +24%)</b>이 사마씨 3인에게 있다. 3연전의 첫 판이므로 여기서 얻어 63 · 64에 그대로 쓴다.<br><br>62~64는 <b>보급 없이 연속으로 치르는 3연전</b>이며 출전 15인이 고정된다. 이것이 <b>1599</b>(최후의 15인을 전원 레벨 99로 육성) 플레이의 무대다."}, "flags": ["loot", "duel"], "badge": "loot", "hot": true}, {"n": 63, "name": "업 Ⅱ", "jp": "鄴Ⅱ", "win": "사마의 괴멸", "turn": 40, "units": null, "ev": ["<b>전투 개시 시 사마의의 책략으로 성중이 불바다가 되어 적아 모두 내구력이 반감</b>"], "duel": [], "kr": "용기서, 원군서 ×2", "cs": "선술의 약 / 쌀 / 한방약 / 물의 힘", "join": "", "tip": "시작하자마자 <b>양측 모두 내구력 반감</b>이다. 회복 아이템을 아끼지 말고 들고 들어가라.", "flags": ["trap"]}, {"n": 64, "name": "업 Ⅲ", "jp": "鄴Ⅲ", "win": "조조 괴멸", "turn": 50, "units": null, "ev": ["<b>4턴째 「남자」가 성내에 불을 지른다.</b> 내구력은 줄지 않지만, 이후 <b>2턴마다 화세가 커지며 왼쪽부터 순서대로 길을 막는다</b>"], "duel": ["장비 vs 허저", "조운 vs 이전", "마초 vs 악진", "관우 vs 장료 — <b>장료가 아군이 아닐 때만</b>"], "kr": "—", "cs": "없음", "join": "", "tip": {"hd": "최종전 — 불이 길을 지운다", "body": "4턴째부터 성내에 불이 붙고, <b>2턴마다 화세가 커지며 왼쪽부터 통로를 차례로 봉쇄</b>한다. 시간을 끌수록 진격로가 사라진다는 뜻이다. <b>왼쪽 경로를 먼저 쓰고 오른쪽을 남겨두는</b> 동선이 정석이다.<br><br>일기토가 넷이나 걸려 있다. <b>관우 vs 장료는 장료를 아군으로 만들지 않았을 때만</b> 성립한다 — 즉 장료를 영입했다면 이 일기토는 볼 수 없다."}, "flags": ["duel", "trap"], "badge": "trap", "hot": true}]}];
+</script>
+<div class="callout">
+  <h3>이 회차에서만 나오는 것 — 유일 입수처 정리</h3>
+  <div class="tw"><table>
+    <thead><tr><th>아이템 · 무장</th><th>유일한 입수처</th><th>놓치는 이유</th></tr></thead>
+    <tbody>
+      <tr><td>자웅일대검</td><td>소패(10) — <b>전투를 회피</b></td><td>싸우면 못 얻는다</td></tr>
+      <tr><td>적로 (이동 +2)</td><td>강하(24) — 조운이 장무와의 <b>일기토에서 승리</b></td><td>붙이는 게 아니라 이겨야 한다</td></tr>
+      <tr><td>청강검</td><td>장판파Ⅱ(30) — 조운이 하후은과의 <b>일기토에서 승리</b></td><td>백성만 탈출시키고 끝내기 쉽다</td></tr>
+      <tr><td>삼첨도</td><td>광릉(18) — 장비가 기영과의 <b>일기토에서 승리</b></td><td>일기토 승패를 신경 쓰지 않는다</td></tr>
+      <tr><td>적토마 (이동 +3)</td><td>하비(17) 보물창고</td><td>적교를 늦게 내려 시간이 없다</td></tr>
+      <tr><td>조황비전 (이동 +1)</td><td>익주(40) — <b>마초를 사자로</b> 파견</td><td>성도에서 싸우기로 하면 못 얻는다</td></tr>
+      <tr><td>칙명서</td><td>와구관Ⅱ(42) — 맵 <b>중간 섬</b>의 보물고</td><td>장합을 먼저 퇴각시켜 전투가 끝난다</td></tr>
+      <tr><td>둔갑천서 (주술사)</td><td>완Ⅱ 성내(56)</td><td>30턴에 보물 셋, 시간이 모자란다</td></tr>
+      <tr><td>육도 · 삼략</td><td>진창(57) — <b>별동대 파견 시에만</b></td><td>전군 공격을 고르면 맵 자체가 안 열린다</td></tr>
+      <tr><td>손자의 병법서 (방어 +22%)</td><td>맥성(49) 이후 <b>오와 동맹</b></td><td>결전을 고르면 못 얻는다</td></tr>
+      <tr><td>패자검 (공격 +24%)</td><td>업Ⅰ(62) — 사마씨 3인이 소지</td><td>최종 3연전이라 재도전이 어렵다</td></tr>
+      <tr><td>봉황깃옷 (최대 HP +160)</td><td>낙성Ⅰ(37) — <b>방통이 사망해야</b> 유품으로</td><td>방통을 살리면 못 얻는다 (트레이드오프)</td></tr>
+      <tr><td><b>강유</b></td><td>진창(57) — 아군 부대가 <b>접촉</b></td><td>별동대를 안 보내면 아예 못 얻는다</td></tr>
+      <tr><td><b>장료</b></td><td>허창Ⅱ(61) — <b>관우가 접촉</b></td><td>맥성에서 관우가 죽으면 불가</td></tr>
+      <tr><td><b>황충 · 위연</b></td><td>장사(35) — 일기토 후 또는 유비 접촉</td><td>한현을 급히 괴멸시키면 놓친다</td></tr>
+      <tr><td><b>서서</b></td><td>장안(58) 또는 낙양(59) — 아군이 <b>접촉</b></td><td>남양에서 이탈한 뒤 잊는다</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="callout">
+  <h3>전직 · 병과 — 판본에 따라 조건이 다르다</h3>
+  <div class="tw"><table>
+    <thead><tr><th>구분</th><th>PC판 (한글판)</th><th>콘솔판 (SFC · PS · SS)</th></tr></thead>
+    <tbody>
+      <tr><td>전직 레벨</td><td>Lv <b>15</b> / <b>30</b></td><td>Lv <b>20</b> / <b>40</b></td></tr>
+      <tr><td>전직 후 페널티</td><td>없음</td><td><b>레벨이 5 하락</b>하며 그만큼 능력치도 떨어진다</td></tr>
+      <tr><td>변경 가능 병과</td><td>보병 · 궁병 · 기병 · 주술사 · 군악대 · 수송대 (6종)</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-top:14px;font-size:14px">최하위 → 최상위 등급으로 올렸을 때의 배율:</p>
+  <div class="tw"><table>
+    <thead><tr><th>클래스업</th><th>공격력</th><th>방어력</th></tr></thead>
+    <tbody>
+      <tr><td>단병 → 전차</td><td>1.5배</td><td>2.0배</td></tr>
+      <tr><td>궁병 → 발석차</td><td><b>2.6배</b></td><td>1.2배</td></tr>
+      <tr><td>경기병 → 친위대</td><td>1.3배</td><td>2.0배</td></tr>
+      <tr><td>산적 → 의적</td><td>1.4배</td><td>1.5배</td></tr>
+    </tbody>
+  </table></div>
+  <ul style="margin-top:14px">
+    <li><b>이 게임은 무력이 높은 무장을 기병대에 배속하는 경향이 있다.</b> 기병 몇을 보병이나 궁병으로 돌리면 기본 보병 · 궁병보다 잘 싸운다.</li>
+    <li>공식 핸드북의 1순위 권고는 <b>맥성(49)에 대비해 관우를 보병대나 궁병대로 바꿔두는 것</b>이다.</li>
+    <li>궁병 → 발석차의 공격 <b>2.6배</b>는 전 병과 최고 배율이다. 대신 이동이 느리니 말 아이템을 붙여라.</li>
+    <li>보조계(수송대 · 군악대 · 주술사)는 <b>상성이 아예 없다.</b> 레벨업당 병력은 수송대 · 군악대 +40, <b>주술사 +50</b>.</li>
+  </ul>
+</div>
 
 <div class="callout">
   <h3>판본별 숨은 요소 · 버그</h3>
@@ -168,192 +236,29 @@
     <tbody>
       <tr><td>SFC<br><span class="mono" style="font-size:11px;color:var(--muted)">1995.12.28</span></td><td>하비 전투에서 유비가 적장을 설득하면 레벨이 오른다. 이후 퇴각해 같은 전투를 반복하면 초반부터 무제한 레벨업</td></tr>
       <tr><td>PS<br><span class="mono" style="font-size:11px;color:var(--muted)">1996.3.29</span></td><td>데미지를 입은 무장의 <b>장비 선택 화면을 열면 내구력이 회복</b>된다. 이미 행동한 무장에게는 불가</td></tr>
-      <tr><td>SS<br><span class="mono" style="font-size:11px;color:var(--muted)">1996.3.29</span></td><td>도구상 · 무기상에서 <b>소지금 이상의 상품을 구매하면 소지금이 증식</b>한다. 후기 판본에서는 막혔다</td></tr>
+      <tr><td>SS<br><span class="mono" style="font-size:11px;color:var(--muted)">1996.3.29</span></td><td>도구상 · 무기상에서 아이템을 고르고 건네받을 때, 소지품 일람에서 버튼을 연타해 소지품을 가득 채우면 <b>소지금이 5만 이상으로 증식</b>한다. 후기 판본에서는 막혔다</td></tr>
       <tr><td>PC</td><td>진창에서 영입한 이민족 3인이 <b>별동대가 본대에 합류하는 시점에 아군에서 빠진다.</b> 콘솔판은 끝까지 유지</td></tr>
     </tbody>
   </table></div>
 </div>
 
-<div class="callout">
-  <h3>정공법 1회차 — 최대 회수 루트</h3>
-  <ul>
-    <li>제1막 선택은 <b>신도성</b> (번궁 · 무도가대)</li>
-    <li><b>소패는 휴전</b> → 자웅일대검</li>
-    <li>산적 토벌은 세 곳 다, 특히 <b>팽성</b>(검술지침서)</li>
-    <li><b>하비 최종전</b> → 적토마 · 방천화극. 적토마는 관우용으로 보관</li>
-    <li>허창 옥대는 <b>건네지 않는다</b></li>
-    <li><b>강하</b> 조운 vs 장무 일기토 → 적로</li>
-    <li><b>양양(20턴)</b> 의천검 — 1턴째부터 경로 계산</li>
-    <li>형주 4군은 <b>전부 설득</b> (황충 · 위연)</li>
-    <li><b>낙성 8턴 버티기</b> → 방통 생존</li>
-    <li><b>마초를 사자로</b> → 조황비전</li>
-    <li><b>와구관 2 중간 섬</b> → 칙명서</li>
-    <li><b>정군산 · 제4장 양양</b> → 청랑서 ×2</li>
-    <li><b>맥성에서 관우 서쪽 탈출</b></li>
-    <li><b>오와 동맹</b> → 손자의 병법서</li>
-    <li><b>완 성내</b> → 둔갑천서</li>
-    <li><b>별동대 파견</b> → 육도 · 삼략</li>
-    <li><b>허창 성내</b> → 옥새, 장료 합류</li>
-    <li><b>업 1</b> → 패자검</li>
-  </ul>
-</div>
-
 <footer>
   <h3>출처</h3>
   <ul>
-    <li><a href="https://it.sssbrain.com/%EC%82%BC%EA%B5%AD%EC%A7%80-%EC%98%81%EA%B1%B8%EC%A0%84-%EA%B3%B5%EB%9E%B5_%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%84%9C%EC%9E%A5-%EC%A0%9C1%EC%9E%A5-%EC%84%9C%EC%A3%BC%EA%B3%B5%EB%B0%A9%EC%A0%84/">삼국지 영걸전 공략 스토리 — 아기 돼지 IT와 생활 정보</a> (전투별 승리 조건 · 턴 · 일기토 · 아이템)</li>
-    <li><a href="https://syumisya.com/koei/eiketsuden/eiketsuden.01/eiktsuden.01.tips.html">三國志英傑伝 ハンドブック 攻略データ — 趣味者</a> (공식 핸드북 해설 · 맵 수 교차 검증 · 옥대 이벤트 · PC/CS 판본 차이)</li>
-    <li><a href="https://menokenkou.work/eiketuura/">英傑伝シリーズ 隠し要素・裏技まとめ</a> (판본별 버그)</li>
-    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84">삼국지 영걸전 — 나무위키</a> · <a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EC%95%84%EC%9D%B4%ED%85%9C">아이템</a> · <a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EC%84%A0%ED%83%9D%EC%A7%80">선택지</a> · <a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EB%B3%91%EA%B3%BC">병과</a></li>
+    <li><a href="https://sesesega.hatenablog.jp/entry/sangokushieiketsuden">三國志英傑伝 — SSSG攻略日記</a> · 『三國志英傑伝ハイパーガイドブック』(光栄) 기반. 전 스테이지의 부대수 · 턴별 이벤트 · 전리품 · 일기토 · 영입 조건</li>
+    <li><a href="https://syumisya.com/koei/eiketsuden/eiketsuden.01/eiktsuden.01.tips.html">三國志英傑伝 ハンドブック 攻略データ — 趣味者</a> · 맵 수 교차 검증, 옥대 이벤트, PC/CS 판본 차이, 클래스체인지 배율</li>
+    <li><a href="https://it.sssbrain.com/%EC%82%BC%EA%B5%AD%EC%A7%80-%EC%98%81%EA%B1%B8%EC%A0%84-%EA%B3%B5%EB%9E%B5_%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%84%9C%EC%9E%A5-%EC%A0%9C1%EC%9E%A5-%EC%84%9C%EC%A3%BC%EA%B3%B5%EB%B0%A9%EC%A0%84/">삼국지 영걸전 공략 스토리 — 아기 돼지 IT와 생활 정보</a> · 한글판 기준 전투별 아이템</li>
+    <li><a href="https://ameblo.jp/umacco-umapon/entry-12709383187.html">英傑伝 스테이지별 공략 시리즈 — umacco</a> · 초반 스테이지 세부 운영</li>
+    <li><a href="https://menokenkou.work/eiketuura/">英傑伝シリーズ 隠し要素・裏技まとめ</a> · 판본별 버그</li>
+    <li><a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84">삼국지 영걸전 — 나무위키</a> · <a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EC%95%84%EC%9D%B4%ED%85%9C">아이템</a> · <a href="https://namu.wiki/w/%EC%82%BC%EA%B5%AD%EC%A7%80%20%EC%98%81%EA%B1%B8%EC%A0%84/%EC%84%A0%ED%83%9D%EC%A7%80">선택지</a></li>
   </ul>
-  <p style="margin-top:16px">원작 기준. 팬 개조판인 영걸전 리메이크 · 리파인은 분기와 수치가 별개다. 전투 번호는 이 문서의 통산 번호이며, 판본과 번역판에 따라 맵 이름 표기가 다를 수 있다.</p>
+  <p style="margin-top:16px">전투 번호는 이 문서의 통산 번호다. 판본과 번역판에 따라 맵 이름과 아이템 명칭 표기가 다를 수 있다.</p>
 </footer>
 </div>
 
 <script>
-var CH=[
-{arc:"서장", t:"반동탁 연합군", s:[
- {n:1,name:"사수관",win:"화웅 괴멸",turn:30,duel:"관우 vs 화웅",loot:"콩, 금100",tags:["duel"],note:"튜토리얼. 부담 없이 조작을 익히는 판이다."},
- {n:2,name:"호로관",win:"여포 퇴각",turn:30,duel:"장비 vs 여포",loot:"콩, 초열서",tags:["duel"],note:"<b>여포는 이길 수 없다.</b> 격파가 아니라 퇴각이 조건이라는 점을 기억할 것."}
-]},
-{arc:"제1장 · 제1막", t:"계교 전투", s:[
- {n:3,name:"신도성",win:"순우경 퇴각 또는 유비가 성문 도착",turn:30,join:"번궁 (무도가대 Lv4)",loot:"술, 금100",tags:["branch"],badge:"branch",
-  note:{hd:"이 선택이 정답이다",body:"광천의 한영·곽적, 거록의 경무·관순은 상위 호환이 넘쳐나는 병과라 출전 인원 제한 때문에 쓸 일이 거의 없다. 반면 <b>번궁은 무도가대</b>로 이 시점에 대체재가 없다. 일본 공식 핸드북도 신도성을 추천한다."}},
- {n:4,name:"광천",win:"봉기 괴멸",turn:30,join:"한영 · 곽적 (Lv4)",loot:"콩, 금100",tags:["branch"],badge:"branch"},
- {n:5,name:"거록",win:"장합 퇴각 또는 유비가 서쪽 성채 도착",turn:30,join:"경무 · 관순 (Lv4)",loot:"보리",tags:["branch"],badge:"branch"},
- {n:6,name:"청하",win:"국의 괴멸",turn:30,loot:"금100, 술",tags:[]},
- {n:7,name:"계교",win:"원소 퇴각 또는 군량창고 탈취",turn:40,join:"조운 (경기병 Lv11)",loot:"화룡서, 장창, 보리, 연노",tags:[]}
-]},
-{arc:"제1장 · 제2막", t:"북해 · 서주 원군", s:[
- {n:8,name:"북해",win:"관해 괴멸",turn:30,duel:"조운 vs 관해",loot:"평기서, 특급주",tags:["duel"]},
- {n:9,name:"서주 (우금군)",win:"적 전멸 또는 유비가 서주성 입성",turn:30,duel:"관우 vs 우금",join:"손건(수송대 Lv10), 미축 · 미방(Lv13)",tags:["duel"]},
- {n:10,name:"소패",win:"조조 퇴각",turn:30,duel:"장비 vs 하후연",key:"자웅일대검 (회피 시)",tags:["branch","loot","duel"],badge:"branch",
-  note:{hd:"싸우지 마라",body:"<b>장비의 제안(휴전)을 채택하면 전투 자체가 회피되고 도겸에게 자웅일대검을 받는다.</b> 싸우기로 해도 10턴째에 조조군이 강제 퇴각하므로 얻는 게 없다. 일본 공식 가이드도 회피를 권장한다. 자웅일대검은 여기서만 나온다."}}
-]},
-{arc:"제1장 · 제3막", t:"아랑 여포의 내방 — 서주 산적 토벌", s:[
- {n:11,name:"태산",win:"적 전멸",turn:40,join:"이명 (맹수부대 Lv12)",loot:"폭탄, 낙석서",tags:["branch"],badge:"branch"},
- {n:12,name:"하구",win:"적 전멸",turn:30,join:"동량 (산적 Lv12)",loot:"소용돌이서",tags:["branch"],badge:"branch"},
- {n:13,name:"팽성",win:"적 전멸",turn:30,join:"조하 (산적 Lv12)",key:"검술지침서",tags:["branch","loot"],badge:"branch",
-  note:{hd:"우선순위 1위",body:"셋 중 하나만 깨도 진행되지만 <b>팽성은 검술지침서가 나온다.</b> 게다가 클리어 후 백성들이 궁술지침서를 상납한다. 여유가 되면 세 곳을 다 도는 것이 최선이다."}}
-]},
-{arc:"제1장 · 제4막", t:"여포 토벌전", s:[
- {n:14,name:"하비 (원술군 협공)",win:"적 전멸 또는 북서쪽 성채 도달",turn:30,duel:"관우 vs 장료",loot:"업화서",tags:["duel"],note:"<b>6턴째에 여포군이 등장</b>한다. 그 전에 진형을 정리해둘 것."},
- {n:15,name:"하구 (여포 토벌)",win:"장료 퇴각",turn:30,duel:"관우 vs 장료",loot:"금400",tags:["duel"]},
- {n:16,name:"팽성 (여포 토벌)",win:"고순 퇴각",turn:30,duel:"장비 vs 고순",loot:"마개",tags:["duel"],note:"곽가 · 하후돈 · 하후연이 증원으로 나타난다."},
- {n:17,name:"하비 (최종)",win:"적교 점령 후 여포 괴멸",turn:45,key:"방천화극 · 적토마",tags:["loot"],badge:"loot",hot:true,
-  note:{hd:"이 게임 최대의 보물 맵",body:"<b>적토마(이동 +3)와 방천화극이 같은 맵에 있다.</b> 게임 전체에서 이동력 아이템은 셋뿐이고 그중 최고가 여기 있다. 45턴으로 여유가 있으니 보물창고 두 곳을 먼저 다 돈 다음 여포를 쳐라. 적토마는 <b>맥성의 관우</b>에게 줄 것을 염두에 두고 보관한다.<br><br>장료는 이 전투 후 조조에게 항복한다. 되찾으려면 맥성에서 관우를 살려야 한다.<br><br><b>SFC판 레벨 노가다</b> — 하비 전투에서 유비가 적장을 설득하면 레벨이 오른다. 퇴각 후 같은 전투를 반복하면 초반부터 무제한으로 키울 수 있다."}}
-]},
-{arc:"제1장 · 제5막", t:"서주 공방전", s:[
- {n:18,name:"광릉",win:"원술 괴멸",turn:30,duel:"장비 vs 기영",key:"칠성검",loot:"금400",tags:["loot","duel"],badge:"loot"},
- {n:19,name:"서주 (최종)",win:"차주 괴멸 후 조조 퇴각 또는 남서쪽 마을 도착",turn:50,tags:[],note:"<b>이길 생각을 버려라.</b> 조조의 대군이 나타난다. 남서쪽 마을로 도주하는 것이 정상 루트다."},
- {n:"—",name:"막간 · 허창의 옥대",win:"조조와의 대화 선택지",turn:null,tags:["trap","branch"],badge:"trap",hot:true,
-  note:{danger:true,hd:"즉사 선택지",body:"허창에서 조조와 대화할 때 <b>옥대를 「건넨다」를 고르면 유비가 처형되어 그 자리에서 게임오버</b>다.<br><br>원전은 『삼국지연의』 20회의 조조와 동승 이야기인데, 연의에서는 동승이 옥대를 건네고도 장치를 눈치채지 못해 돌려받는다. <b>연의를 아는 사람일수록 걸려드는 함정</b>으로 설계돼 있다. 반드시 「건네지 않는다」를 고를 것."}}
-]},
-{arc:"제2장", t:"관도 전투 · 와룡공명의 출려 · 조조의 남방정벌", s:[
- {n:20,name:"연주",win:"곽도 퇴각 또는 유비가 남서쪽 성채 도달",turn:45,duel:"조운 vs 장합",join:"조운",loot:"폭탄, 차",tags:["duel"]},
- {n:21,name:"고성",win:"특정 대상 접촉",turn:40,join:"장비",key:"검술지침서",loot:"설붕서, 특급주",tags:["loot"]},
- {n:22,name:"영천",win:"채양 괴멸",turn:30,duel:"관우 vs 채양",join:"관우 · 관평 · 주창",loot:"산사태서",tags:["duel"]},
- {n:23,name:"여남",win:"조인 퇴각 또는 남서쪽 성채 도달",turn:40,duel:"조운 vs 허저",join:"유벽",key:"고취구",tags:["loot","duel"],badge:"loot",
-  note:"고취구는 여남과 공안 두 곳에서만 나온다. <b>1599 플레이를 노린다면 필수</b>다."},
- {n:24,name:"강하",win:"장무 괴멸",turn:40,duel:"조운 vs 장무",key:"적로 (일기토 보상)",loot:"의협교본, 보병차, 금400",tags:["loot","duel"],badge:"loot",hot:true,
-  note:{hd:"적로가 걸린 일기토",body:"<b>조운 vs 장무 일기토를 성사시켜야 적로(이동 +2)가 나온다.</b> 조운을 장무에게 붙여라. 그냥 클리어하면 게임 내 3개뿐인 말 아이템 중 하나가 영구히 사라진다."}},
- {n:25,name:"남양",win:"조인 퇴각",turn:40,duel:"조운 / 장비",tags:["trap"],badge:"trap",
-  note:{danger:true,hd:"진행 불가 버그",body:"치트 · 숨겨진 요소를 사용한 상태에서 <b>유비로 조인을 퇴각시키면 게임이 더 이상 진행되지 않는다.</b> 조인 처리는 다른 무장에게 맡겨라.<br><br>서서가 우군으로 활약하고 이후 이탈한다. 제4장 장안 / 낙양에서 아군과 인접시키면 재합류한다."}},
- {n:26,name:"신야",win:"하후돈 퇴각 또는 군량고 탈취",turn:40,duel:"장비 vs 우금",join:"제갈량",tags:["duel"]},
- {n:27,name:"박망파",win:"하후돈 퇴각",turn:40,duel:"관우 vs 이전",tags:["duel"]},
- {n:28,name:"양양",win:"채모 괴멸",turn:20,duel:"조운 vs 장윤",key:"의천검",loot:"업화서, 차",tags:["loot","duel","trap"],badge:"trap",hot:true,tight:true,
-  note:{danger:true,hd:"전체 최단 턴 제한",body:"<b>20턴뿐인데 하필 의천검이 있다.</b> 1턴째부터 보물창고 경로를 계산하고 움직여라. 보물창고는 일반 지형보다 이동력을 더 먹는다는 점을 반드시 계산에 넣을 것."}},
- {n:29,name:"장판파 1",win:"조조 퇴각 또는 백성 도망",turn:70,tags:[]},
- {n:30,name:"장판파 2",win:"조조 퇴각 또는 백성 도망",turn:99,duel:"조운 vs 하후은",tags:["duel"],
-  note:"승리 조건이 「백성 도망」, 즉 <b>버티는 맵</b>이다. 70턴 · 99턴으로 턴이 넘치니 레벨업 기회로 써도 된다."}
-]},
-{arc:"제3장 · 제1막", t:"형주남부 평정전", s:[
- {n:31,name:"강릉",win:"진교 괴멸 → 주유 퇴각",turn:30,duel:"조운 vs 감녕",key:"궁술지침서",tags:["loot","duel"]},
- {n:32,name:"무릉",win:"금선 괴멸 또는 적 항복",turn:35,duel:"유비 vs 공지 · 주창 vs 금선",loot:"투석기, 금500",tags:["duel","branch"]},
- {n:33,name:"영릉",win:"유도 괴멸 또는 적 항복",turn:35,duel:"관평 vs 형도영 · 유비 vs 유도",loot:"원대서",tags:["duel","branch"]},
- {n:34,name:"계양",win:"조범 괴멸 또는 적 항복",turn:35,duel:"유봉 vs 포용 · 유비 vs 조범",loot:"탁류서",tags:["duel","branch"]},
- {n:35,name:"장사",win:"한현 괴멸 또는 적 항복",turn:40,duel:"관우 vs 황충 · 유비 vs 위연",key:"영걸검 · 검술지침서",tags:["loot","duel","branch"],badge:"loot",hot:true,
-  note:{hd:"형주 4군은 전부 설득이 정답",body:"31~35는 모두 「괴멸 <b>또는</b> 항복」 이중 조건이다. <b>유비를 적장에게 붙여 설득하는 쪽이 언제나 이득</b>이다 — 경험치도 들어오고 무장도 얻는다. 특히 장사에서 <b>황충과 위연</b>이 이 방식으로 들어온다. 급하게 괴멸시키지 말 것."}}
-]},
-{arc:"제3장 · 제2막", t:"형주 영유권 분쟁", s:[
- {n:36,name:"공안",win:"주유 퇴각 또는 4개 성채 점령",turn:40,duel:"관우 vs 여몽",key:"고취구",loot:"해일서",tags:["loot","duel"],badge:"loot",
-  note:"고취구가 나오는 마지막 맵이다. 여남(23)에서 놓쳤다면 여기가 유일한 기회다."}
-]},
-{arc:"제3장 · 제3막", t:"익주 공략전", s:[
- {n:37,name:"부(涪) 1",win:"유괴 퇴각",turn:30,tags:[]},
- {n:38,name:"부(涪) 2 = 낙성 (낙봉파)",win:"유괴 괴멸",turn:40,tags:["branch","trap"],badge:"branch",hot:true,
-  note:{hd:"방통 생사 분기 — 8턴",body:"<b>방통의 별동대가 유비 본대와 떨어진 위치에서 시작</b>한다. 장임의 복병이 성공하면 별동대가 포위된다.<ul><li><b>8턴 안에 방통이 퇴각하면 사망 처리</b>된다.</li><li>8턴을 버티면 장임의 두 번째 계략(군량고 탈취)이 성공하면서 <b>방통이 죽지 않고 전군 퇴각</b>한다.</li><li>적 주장 <b>유괴를 격퇴하면 적들이 성에서 나오지 않는다.</b></li><li>방통 사망 시 생존 부대는 경험치 +50.</li></ul>",
-    table:{head:["선택","얻는 것","잃는 것"],rows:[
-      ["방통 생존","후반 광역 책략 <b>폭풍</b>, 제4장 <b>별동대 총대장</b>","봉황깃옷"],
-      ["방통 사망","<b>봉황깃옷</b> (최대 HP +160, 7레벨 이후 +80 추가)","방통, 별동대 총대장은 조운이 대신"]]},
-    tail:"일반적으로는 <b>생존 쪽이 낫다.</b> 봉황깃옷은 강력하지만 무장 하나와 총대장 자리를 대체하지 못한다."}},
- {n:39,name:"가맹관",win:"장로 퇴각",turn:30,duel:"장비 vs 마초",key:"원군보고",tags:["loot","duel"],badge:"loot"},
- {n:40,name:"성도",win:"유장 항복",turn:40,duel:"유비 vs 이름 있는 적장 다수",loot:"투석기, 보병차",tags:["branch"],badge:"branch",hot:true,
-  note:{hd:"싸울 것인가 설득할 것인가",body:"가맹관(39) 이후 <b>「마초를 보낸다 / 보내지 않는다」</b> 선택지가 뜬다.",
-    table:{head:["선택","결과"],rows:[
-      ["마초를 보낸다","<b>조황비전(이동 +1)</b> 획득 + <b>성도 전투 스킵</b>"],
-      ["보내지 않는다","성도 전투 진행. <b>유장을 제외한 이름 있는 적장을 유비가 설득해 아군화</b> 가능"]]},
-    tail:"아이템과 시간을 원하면 파견, 동료 머릿수를 원하면 전투. 둘 다는 안 된다."}}
-]},
-{arc:"제3장 · 제4막", t:"한중 공방전", s:[
- {n:41,name:"와구관 1",win:"장합 퇴각",turn:40,duel:"뇌동 vs 장합",tags:["duel"]},
- {n:42,name:"와구관 2",win:"장합 퇴각",turn:40,key:"칙명서 (중간 섬)",loot:"업화서",tags:["loot","trap"],badge:"trap",hot:true,
-  note:{danger:true,hd:"보물고가 맵 한가운데 섬에 있다",body:"<b>이동 계획 없이는 절대 못 먹는다.</b> 승리 조건(장합 퇴각)을 먼저 달성해버리면 그대로 전투가 끝난다. 회수조를 따로 편성해 섬으로 보낸 뒤에 장합을 처리하라."}},
- {n:43,name:"가맹관 (한중)",win:"하후덕 괴멸",turn:35,duel:"엄안 vs 하후덕",loot:"해일서, 쌀, 근위개, 빼갈",tags:["duel"]},
- {n:44,name:"정군산",win:"하후연 괴멸",turn:35,duel:"유비 vs 왕평 · 황충 vs 하후연",key:"청랑서",loot:"금800, 산사태서",tags:["loot","duel"],badge:"loot",
-  note:"청랑서는 정군산과 제4장 양양, <b>두 곳에서만</b> 나온다. 1599 플레이를 노린다면 절대 스킵 불가한 맵이다."},
- {n:45,name:"천탕산",win:"서황 퇴각 또는 하후덕 괴멸",turn:40,duel:"엄안 vs 하후덕 · 황충 vs 하후연",loot:"한방약",tags:["duel"]},
- {n:46,name:"한수",win:"조홍 퇴각",turn:40,duel:"오란 vs 조창",loot:"금1000, 차",tags:["duel"]},
- {n:47,name:"양평관",win:"조조 퇴각",turn:45,duel:"마초 vs 방덕",key:"마술지침서",tags:["loot","duel"]}
-]},
-{arc:"제3장 · 제5막", t:"촉한 건국", s:[
- {n:48,name:"맥성",win:"적 전멸 또는 관우가 서쪽 성채 도달",turn:50,loot:"원군서 ×2, 차",tags:["branch","trap"],badge:"branch",hot:true,
-  note:{hd:"이 게임의 축",body:"<b>관우 · 장비 · 관평 · 주창 · 왕보 · 요화 · 조루의 생사, 장료 영입 가능 여부, 그리고 엔딩이 전부 여기서 결정된다.</b><br><br><b>관우 생존 조건 — 둘 중 하나만</b><ul><li>적 전멸</li><li><b>관우가 서쪽 성채(맵 서쪽 끝)에 도달</b></li></ul>관우가 퇴각당하면 그 자리에서 사망한다. 버티는 싸움이 아니라 <b>처음부터 탈출을 설계하는 판</b>이다.<br><br><b>사전 준비가 전부다.</b> 관우는 앞선 여러 전투에 결장해 레벨과 장비가 뒤처져 있다. 하비(17)에서 얻은 <b>적토마를 관우에게 주는 것이 가장 확실한 해법</b>이다.",
-    table:{head:["관우","오와의 관계","결과"],rows:[
-      ["생존","동맹","<b>손자의 병법서</b>(방어 +22%) · 서릉 스킵 · 즉시 제4장"],
-      ["생존","결전","장비가 전투 직전 합류 · 서릉(49) 진행"],
-      ["사망","동맹","<b>손자의 병법서</b> · 서릉 스킵 · 즉시 제4장"],
-      ["사망","결전","<b>장비 암살</b> · 서릉(49) 진행"]]},
-    tail:"오와의 동맹은 관우 생사와 무관하게 고를 수 있고, 고르면 병법서를 받고 전투가 스킵된다. <b>관우를 살리면 장비도 산다.</b> 이후에는 무슨 선택을 하든 이기기만 하면 해피엔딩이다."}},
- {n:49,name:"서릉",win:"손항 퇴각",turn:40,duel:"관흥 vs 이이 · 장포 vs 사정",tags:["duel"],note:"오와 동맹을 맺으면 이 전투는 스킵된다."},
- {n:50,name:"이릉",win:"육손 퇴각",turn:50,tags:["trap"],badge:"trap",
-  note:{danger:true,hd:"패배 전용 배드엔딩",body:"이릉에서 패배하면 게임오버가 아니라 별도의 배드엔딩 <b>「물거품의 꿈(うたかたの夢)」</b>으로 끝난다. 모르고 지나가면 그대로 회차가 종료된다."}}
-]},
-{arc:"제4장 · 제1막", t:"형주 탈환", s:[
- {n:51,name:"양양",win:"조인 괴멸",turn:40,duel:"(아군) vs 조인",key:"마술지침서 · 청랑서",loot:"차",tags:["loot","duel"],badge:"loot",
-  note:"<b>청랑서가 나오는 마지막 맵</b>이다. 정군산(44)과 여기, 둘뿐이다."},
- {n:52,name:"남사",win:"서황 퇴각 또는 성채 점령",turn:40,duel:"장포 vs 하후상",loot:"해일서, 원대서, 금2000",tags:["duel"]},
- {n:53,name:"신야",win:"우금 퇴각 또는 군량고 탈취",turn:40,duel:"장비 vs 우금",loot:"용기서",tags:["duel"],
-  note:"<b>신야(53) 또는 남사(52) 종료 후 감녕 · 능통 · 서성 · 정봉이 레벨 40 전후로 합류</b>한다."},
- {n:54,name:"완 (성외)",win:"장료 퇴각",turn:40,duel:"장비 vs 장료",loot:"폭탄, 원대서, 업화서",tags:["duel"]},
- {n:55,name:"완 (성내)",win:"하후돈 퇴각",turn:30,duel:"장비 vs 서황 · 관우 vs 하후돈",key:"마술지침서 · 둔갑천서 · 검술지침서",tags:["loot","duel"],badge:"loot",hot:true,
-  note:{hd:"둔갑천서가 나오는 유일한 맵",body:"<b>주술사로 전직시키는 「둔갑천서」가 여기서만 나온다.</b> 게다가 이 맵만 30턴으로 짧은데 보물이 셋이다.<br><br>주술사는 후반에 최강 사기 책략 <b>낙뢰</b>를 배워 사실상 밸런스를 붕괴시키는 병과다. 상성도 없고, 레벨업당 병력 증가(+50)도 다른 보조계(+40)보다 높다. <b>이 맵을 대충 넘기면 그 회차에서 주술사를 볼 수 없다.</b><br><br><b>관우 생존</b> 상태로 이 전투를 끝내면 관평 · 주창 · 왕보 · 요화 · 조루가 허창부터 합류한다."}}
-]},
-{arc:"제4장 · 제2막", t:"중원의 사투 — 별동대 분기", s:[
- {n:"★",name:"제갈량의 물음",win:"관중에 별동대를 보낼 것인가, 전군으로 칠 것인가",turn:null,tags:["branch"],badge:"branch",hot:true,
-  note:{hd:"파견하면 진창 · 장안이 열리고 낙양이 스킵된다",body:"두 전투는 연전이며 <b>관중 별동대의 고정 멤버로만</b> 싸워야 한다. 총대장은 방통(생존 시) / 조운(사망 시).<br><br><b>판단</b> — 육도 · 삼략 · 궁술지침서 · 이민족을 원하면 파견. 다만 PC판은 이민족이 도로 빠지므로 실질 보상은 아이템 3종이다. 그래도 파견 쪽이 낫다."}},
- {n:56,name:"진창 (파견 시)",win:"학소 괴멸",turn:30,duel:"마초 vs 이민족 · 위연 vs 학소",key:"육도 · 삼략 · 궁술지침서",tags:["loot","duel","branch"],badge:"loot",hot:true,
-  note:{hd:"이민족 영입과 판본 차이",body:"<ul><li><b>마초가 장획 · 정덕 · 고창 중 한 명에게라도 인접하면 이민족 전원이 아군</b>이 된다.</li><li><b>PC판에서는 별동대가 본대에 합류하는 시점에 이민족이 아군에서 빠진다.</b> 콘솔판에서는 끝까지 남는다.</li><li>위연 vs 학소 일기토가 곧 승리 조건이다. 위연이 시종일관 밀리다가 결정적 순간에 학소의 지병이 도져 끝난다. <b>져도 되는 연출이니 당황하지 말 것.</b></li><li><b>육도 · 삼략(각 방어 +15%)은 이 맵에서만 나온다.</b> 별동대를 보내지 않으면 영구 손실이다.</li></ul>"}},
- {n:57,name:"장안 (파견 시)",win:"조진 괴멸",turn:30,duel:"조운 vs 장합",loot:"원군서",tags:["duel","branch"],
-  note:"남양(25)에서 이탈한 <b>서서</b>를 아군과 인접시키면 우군으로 재합류한다."},
- {n:58,name:"낙양 (미파견 시)",win:"조진 퇴각",turn:40,duel:"장비 vs 장합",loot:"원군서, 금2000",tags:["duel","branch"],
-  note:"별동대를 파견하면 이 전투가 스킵된다. 서서 재합류 기회는 여기에도 있다."},
- {n:59,name:"허창 (성외)",win:"사마의 퇴각",turn:40,duel:"관흥 vs 허저",key:"궁술지침서 · 검술지침서",tags:["loot","duel"]},
- {n:60,name:"허창 (성내)",win:"안쪽 성문 도달 후 사마의 퇴각",turn:40,duel:"관우 vs 장료",key:"옥새",tags:["loot","duel","branch"],badge:"loot",hot:true,
-  note:{hd:"관우가 살아 있으면 장료가 온다",body:"<b>관우 생존 시 허창 전투의 대화 이벤트로 장료가 항복</b>한다. 맥성에서 관우를 살린 보상이 여기서 현금화된다.<br><br>옥새(턴마다 병력 + 사기 회복)도 여기서 나온다. 다만 원군보고 · 칙명서 · 옥새의 <b>회복 효과는 한 무장에게 몰아줘도 중첩되지 않는다.</b> 각각 다른 무장에게 분산시켜라."}}
-]},
-{arc:"제4장 · 제3막", t:"촉 · 위 최종결전", s:[
- {n:61,name:"업 1",win:"조비 괴멸",turn:40,duel:"장포 vs 조창 · 관흥 vs 조식",key:"패자검",loot:"원군서",tags:["loot","duel"],badge:"loot",hot:true,
-  note:{hd:"게임 최강 공격 아이템",body:"<b>패자검(공격 +24%)</b>이 사마씨 3인에게 있다. 3연전의 첫 판이므로 여기서 얻어 62 · 63에 그대로 쓴다.<br><br>61~63은 <b>보급 없이 연속으로 치르는 3연전</b>이며 출전 15인이 고정된다. 이것이 <b>1599</b>(최후의 15인을 전원 레벨 99로 육성) 플레이의 무대다."}},
- {n:62,name:"업 2",win:"사마의 괴멸",turn:40,loot:"용기서, 원군서 ×2",tags:[]},
- {n:63,name:"업 3",win:"조조 괴멸",turn:50,duel:"조운 vs 이전 · 관우 vs 장료 · 마초 vs 악진 · 장비 vs 허저",tags:["duel"],
-  note:"최종전. <b>일기토가 넷</b>이나 걸려 있다. 관우 vs 장료는 관우를 살렸을 때만 성립한다."}
-]}];
-
 var BADGE={branch:["b-branch","분기"],trap:["b-trap","함정"],loot:["b-loot","회수"]};
-
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-
 function noteHTML(nt){
   if(!nt) return "";
   if(typeof nt==="string") return '<div class="note">'+nt+'</div>';
@@ -364,39 +269,50 @@ function noteHTML(nt){
     h+='<div class="tw"><table><thead><tr>';
     nt.table.head.forEach(function(x){h+='<th>'+esc(x)+'</th>'});
     h+='</tr></thead><tbody>';
-    nt.table.rows.forEach(function(r){
-      h+='<tr>'; r.forEach(function(c){h+='<td>'+c+'</td>'}); h+='</tr>';
-    });
+    nt.table.rows.forEach(function(r){h+='<tr>';r.forEach(function(c){h+='<td>'+c+'</td>'});h+='</tr>'});
     h+='</tbody></table></div>';
   }
   if(nt.tail) h+='<p style="margin-top:10px">'+nt.tail+'</p>';
   return h+'</div>';
 }
-
 function rowHTML(s){
-  var h='<div class="row'+(s.hot?' hot':'')+'" data-tags="'+(s.tags||[]).join(" ")+'">';
+  var h='<div class="row'+(s.hot?' hot':'')+'">';
   h+='<div class="n">'+esc(s.n)+'</div><div>';
   h+='<div class="nm"><h3>'+esc(s.name)+'</h3>';
+  if(s.jp&&s.jp!=="—") h+='<span class="jp">'+esc(s.jp)+'</span>';
   if(s.badge&&BADGE[s.badge]) h+='<span class="badge '+BADGE[s.badge][0]+'">'+BADGE[s.badge][1]+'</span>';
-  h+='</div><div class="facts">';
-  if(s.win) h+='<span class="fact"><span class="k">승리</span><span class="v">'+esc(s.win)+'</span></span>';
-  if(s.turn) h+='<span class="fact"><span class="k">턴</span><span class="v turn'+(s.tight?' tight':'')+'">'+s.turn+'</span></span>';
-  if(s.duel) h+='<span class="fact"><span class="k">일기토</span><span class="v">'+esc(s.duel)+'</span></span>';
-  if(s.key) h+='<span class="fact"><span class="k">핵심</span><span class="v"><span class="key">'+esc(s.key)+'</span></span></span>';
-  if(s.loot) h+='<span class="fact"><span class="k">기타</span><span class="v">'+esc(s.loot)+'</span></span>';
-  if(s.join) h+='<span class="fact"><span class="k">합류</span><span class="v">'+esc(s.join)+'</span></span>';
-  h+='</div>'+noteHTML(s.note)+'</div></div>';
+  h+='</div><div class="meta">';
+  if(s.win) h+='<span class="m"><span class="k">승리</span><span>'+s.win+'</span></span>';
+  if(s.turn) h+='<span class="m"><span class="k">턴</span><span class="turn'+(s.tight?' tight':'')+'">'+s.turn+'</span></span>';
+  if(s.units) h+='<span class="m"><span class="k">출전</span><span class="turn">'+s.units+'</span></span>';
+  h+='</div>';
+
+  var blocks="";
+  if(s.ev&&s.ev.length){
+    blocks+='<div class="blk ev"><span class="h">전개 · 이벤트</span><ul>';
+    s.ev.forEach(function(e){blocks+='<li>'+e+'</li>'}); blocks+='</ul></div>';
+  }
+  if(s.duel&&s.duel.length){
+    blocks+='<div class="blk"><span class="h">일기토</span><ul>';
+    s.duel.forEach(function(e){blocks+='<li>'+e+'</li>'}); blocks+='</ul></div>';
+  }
+  var loot="";
+  if(s.key) loot+='<li><b class="key">'+esc(s.key)+'</b></li>';
+  if(s.kr&&s.kr!=="—"&&s.kr!=="") loot+='<li>한글판 — '+esc(s.kr)+'</li>';
+  else if(s.kr==="—") loot+='<li>한글판 — 없음</li>';
+  if(s.cs) loot+='<li>콘솔판 — '+esc(s.cs)+'</li>';
+  if(loot) blocks+='<div class="blk"><span class="h">회수품</span><ul>'+loot+'</ul></div>';
+  if(s.join) blocks+='<div class="blk"><span class="h">합류 · 영입</span><ul><li>'+s.join+'</li></ul></div>';
+  if(blocks) h+='<div class="blocks">'+blocks+'</div>';
+
+  h+=noteHTML(s.tip)+'</div></div>';
   return h;
 }
-
 var out=document.getElementById("out"), hits=document.getElementById("hits");
-
-function render(filter){
+function render(f){
   var html="", shown=0;
   CH.forEach(function(c){
-    var rows=c.s.filter(function(s){
-      return filter==="all" || (s.tags||[]).indexOf(filter)>-1;
-    });
+    var rows=c.s.filter(function(s){return f==="all"||(s.flags||[]).indexOf(f)>-1});
     if(!rows.length) return;
     shown+=rows.length;
     html+='<section class="chap"><div class="chap-h"><span class="arc">'+esc(c.arc)+'</span><h2>'+esc(c.t)+'</h2></div>';
@@ -406,13 +322,10 @@ function render(filter){
   out.innerHTML = html || '<p class="empty">해당하는 전투가 없습니다.</p>';
   hits.textContent = shown+"개 표시";
 }
-
 var btns=[].slice.call(document.querySelectorAll(".fbtn"));
-btns.forEach(function(b){
-  b.addEventListener("click",function(){
-    btns.forEach(function(x){x.setAttribute("aria-pressed", x===b ? "true":"false")});
-    render(b.dataset.f);
-  });
-});
+btns.forEach(function(b){b.addEventListener("click",function(){
+  btns.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+  render(b.dataset.f);
+})});
 render("all");
 </script>
