@@ -178,8 +178,11 @@ MY서울랜드 앱 설치(위치 권한 필수) → 어트랙션 탭 → 시간�
 - [ ] MY서울랜드 앱 설치·위치 권한
 - [ ] 운영시간·공연 시간 재확인 (02-509-6000 / 앱)
 - [ ] 물 2병 냉동, 유부초밥·김밥 재료
+- [ ] 데울 메뉴 있으면 **전자레인지 가능 밀폐용기** (수유실 2곳에 전자레인지)
+- [ ] 빈 물통 1개 (수유실 정수기 충전용)
 - [ ] 우비 2, 여벌 양말·상의, 물티슈, 밴드, 선크림·모자, 돗자리, 쓰레기봉투
 - [ ] 유모차 트렁크
+- [ ] (선택) 아이스박스는 차에 두고 재입장으로 점심때 가지러 가기
 - [ ] 현장: 동문 물품보관 → 루나패스 1개 예약 → 스카이엑스 유료 확인 → 12:00 브루미즈동산 → 16:00 주차 인증
 
 ## 10. 추가 제안
@@ -199,7 +202,8 @@ MY서울랜드 앱 설치(위치 권한 필수) → 어트랙션 탭 → 시간�
 | 어트랙션 50개·신장 | https://seoulland.co.kr/?p=42 |
 | 가이드맵 원본 | https://seoulland.co.kr/inc/images/guidemap.jpg |
 | 유모차·웨건 | https://seoulland.co.kr/?p=39 |
-| 쉼터·수유실 | https://www.yugacrew.com/crewtalk/7034 |
+| 쉼터·수유실(전자레인지·정수기·개수대) | https://www.yugacrew.com/crewtalk/7034 |
+| 재입장·어린이 요금 기준 | https://seoulland.co.kr/?p=21 (공식 FAQ. **외부 음식 조항은 FAQ에 없음**) |
 | 루나패스 | https://www.news1.kr/industry/distribution/4269161 · https://jjjuha.com/entry/서울랜드-루나패스-이용방법-feat-베스트키즈 · 트립닷컴(루나패스+ 요금) |
 | 식당 실가격 | 다이닝코드 카레원(xN13ABDBTpl4)·장터(LoqhkZGwbFeR)·키즈팔래스(rSaM7zNdF85g)·캐루셀(f5luHBFz1yAg)·CPK(HswXuwVIS0u8)·롯데리아(7Gej1M1JYf8Q), 산타레스토랑 후기 |
 | 공연 일정 | https://seoulland.co.kr/scheduleView.php (9/4 기준만 노출) |
