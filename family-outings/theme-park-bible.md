@@ -132,7 +132,7 @@
 
 **단, 도시락이 막힌다.** 실전 해법은 **입장 전 차 안에서 김밥** — 게이트 1시간 대기가 아침 겸 점심 시간이 된다.
 
-→ [에버랜드 평일 마스터북](./park-everland.md) · [PDF](./assets/everland_family_masterbook_weekday.pdf) · [동선 개략도](./assets/everland_map_route_weekday.jpg) · [포켓카드](./assets/everland_pocket_card_weekday.png)
+→ [에버랜드 평일 마스터북](./park-everland.md) · [PDF](./assets/everland_family_masterbook_weekday.pdf) · [동선 개략도](./assets/everland_map_route_weekday.jpg) · [포켓카드](./assets/everland_pocket_card_weekday.png) · [웹](https://claude.ai/code/artifact/036c0b84-d712-4b8a-9b93-786a147eb1fe)
 
 ---
 
