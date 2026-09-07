@@ -3,7 +3,7 @@
 하루 종일 놀아도 돈이 별로 안 드는 가족 나들이 계획을 모아두는 곳.
 새 지역을 조사할 때마다 `TEMPLATE.md`를 복사해서 `YYYY-MM-DD-지역명.md` 파일로 저장한다.
 
-> ⚠️ **2026-09-07 감사 진행 중** — [감사 결과](./AUDIT-2026-09-07.md) · [수집한 1차 자료](./DATA-seoulland.md)
+> **2026-09-07 감사 완료** — [감사 결과](./AUDIT-2026-09-07.md) · [1차 자료](./DATA-seoulland.md) · [다시 쓴 가이드](./seoulland-guide.md)
 > 마스터 바이블의 법칙 3 폐기, 루나패스 서술 정정, 유료 체험시설 누락 등이 확인되었습니다.
 
 ## 운영 원칙
@@ -30,9 +30,10 @@
 
 ## 공유용 가이드 (외부에 보내는 것)
 
-- **[서울랜드 키 공략집](./seoulland-guide.md)** — 아무 가족이나 쓸 수 있게 일반화한 버전.
+- **[서울랜드 준비 자료](./seoulland-guide.md)** — 키·날씨·공식 코스·할인 네 축. **개인 경험 없이 공식 자료만.**
   [웹 링크](https://claude.ai/code/artifact/ed4f0a74-8cf4-4ec0-8027-476cecc5fdc7) · [PDF](./assets/seoulland_guide.pdf) · [지도](./assets/seoulland_guide_map.jpg) · [포켓카드](./assets/seoulland_guide_pocket.png)
-  - 키 구간 8단계 조견표, 실제 방문에서 걸린 함정 5가지, 공연 선착순 규칙, 물놀이·돗자리 구역. **개인 정보 없음.**
+  - 어트랙션 50종(존·보호자 동반·별도 요금) · 날씨별 운휴 공식 표 · 공식 추천코스 6종 · 진행 중 할인 17종
+  - 원자료: **[DATA-seoulland.md](./DATA-seoulland.md)** · 감사 기록: [AUDIT-2026-09-07.md](./AUDIT-2026-09-07.md)
 
 ## 참고 목록 (날짜 없는 자료)
 
