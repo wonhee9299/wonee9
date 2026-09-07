@@ -20,6 +20,12 @@
 | 2026-08-22 | [동두천](./2026-08-22-dongducheon.md) | 아빠 + 첫째 8세 + 둘째 3세 후반 | 꿈이담 키즈헬스케어센터 → 아리랑갈비 → 경기북부어린이박물관 → 자유수호평화박물관 | 44,000~62,000원 | 완료 |
 | 2026-09-05 | [서울랜드](./2026-09-05-seoulland.md) · [PDF 마스터북](./assets/seoulland_family_masterbook_20260905.pdf) · [지도 동선도](./assets/seoulland_map_route_20260905.jpg) · [포켓카드](./assets/seoulland_pocket_card_20260905.png) | 아빠+첫째(130cm 코스터팀) / 엄마+둘째(101cm 키즈존팀) | 동문 오픈런 → 코스터/키즈존 분산 → 12:00 브루미즈동산 도시락 → 오후 공용 → 16:00 출차 | 약 85,000원 (자유이용권 8만 + 음료) | **완료** (방문 후 메모 있음) |
 
+## 공유용 가이드 (외부에 보내는 것)
+
+- **[서울랜드 키 공략집](./seoulland-guide.md)** — 아무 가족이나 쓸 수 있게 일반화한 버전.
+  [웹 링크](https://claude.ai/code/artifact/ed4f0a74-8cf4-4ec0-8027-476cecc5fdc7) · [PDF](./assets/seoulland_guide.pdf) · [지도](./assets/seoulland_guide_map.jpg) · [포켓카드](./assets/seoulland_guide_pocket.png)
+  - 키 구간 8단계 조견표, 실제 방문에서 걸린 함정 5가지, 공연 선착순 규칙, 물놀이·돗자리 구역. **개인 정보 없음.**
+
 ## 참고 목록 (날짜 없는 자료)
 
 - **[놀이공원 마스터 바이블](./theme-park-bible.md)** — 서울랜드 실패에서 뽑은 5가지 법칙, 방문 전 체크리스트, 4개 파크 비교표

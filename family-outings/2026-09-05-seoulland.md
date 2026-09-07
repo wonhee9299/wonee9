@@ -6,6 +6,7 @@
 - **지도 동선도**: [seoulland_map_route_20260905.jpg](./assets/seoulland_map_route_20260905.jpg) (공식 가이드맵 위에 동선·쉼터·식당 표시)
 - **포켓 카드**: [seoulland_pocket_card_20260905.png](./assets/seoulland_pocket_card_20260905.png) (1080×1920, 폰 잠금화면용 한 장 요약)
 - **웹 버전**: https://claude.ai/code/artifact/5902879f-6630-4e77-abd7-12b9526aab99
+- **공유용 일반 가이드**: [서울랜드 키 공략집](./seoulland-guide.md) — 이 문서의 방문 후 메모를 반영해 아무 가족이나 쓸 수 있게 다시 쓴 버전
 
 ## 빌드업에서 추가된 것 (2차)
 
