@@ -42,7 +42,7 @@
   - **[에버랜드 평일 마스터북](./park-everland.md)** — 풀세트: [PDF 마스터북](./assets/everland_family_masterbook_weekday.pdf) · [공식 가이드맵 동선](./assets/everland_map_route_weekday.jpg) · [포켓카드](./assets/everland_pocket_card_weekday.png) · [웹 마스터북](https://claude.ai/code/artifact/036c0b84-d712-4b8a-9b93-786a147eb1fe)
   - [롯데월드 계획서](./park-lotteworld.md) · [경주월드 계획서](./park-gyeongjuworld.md)
 - [서울랜드 2회차 공략 — 아래쪽 구역 & 공연](./seoulland-tips-v2.md) — 주말 공연 시간표 실측, 3세 부적합 공연, 모험의나라·삼천리동산·백일홍가든
-- **[가을 주말 빈집털이 나들이 — 하남 기준](./fall-weekend-empty.md)** (9판) — 정원제·예약제로 인원 상한이 걸린 곳만 골라 순위화. **미사역 기준 실측 도로거리**, 4인 비용, 도시락·돗자리·텐트 규정, **한강공원 과태료표**, **모래놀이터 14곳**(하남 나무고아원 포함, [PDF 9쪽·사진 12장](./assets/sand_playground_guide.pdf))(강동 유아숲체험원 4곳·광나루·보라매 등), 뺀 곳과 근거, **재조사 로그(내 오류 3건 정정)** · [모래놀이터 가이드 PDF](./assets/sand_playground_guide.pdf)(4쪽, 광나루 사진 포함)
+- **[가을 주말 빈집털이 나들이 — 하남 기준](./fall-weekend-empty.md)** (10판) — 정원제·예약제로 인원 상한이 걸린 곳만 골라 순위화. **미사역 기준 실측 도로거리**, 4인 비용, 도시락·돗자리·텐트 규정, **한강공원 과태료표**, **모래놀이터 14곳**(하남 나무고아원 포함, [PDF 9쪽·사진 12장](./assets/sand_playground_guide.pdf))(강동 유아숲체험원 4곳·광나루·보라매 등), 뺀 곳과 근거, **재조사 로그(내 오류 3건 정정)** · [모래놀이터 가이드 PDF](./assets/sand_playground_guide.pdf)(4쪽, 광나루 사진 포함)
 - [하남 기준 가성비 캠핑장 목록](./camping-near-hanam.md) — 당일치기/1박, 거리순, 4인 1박 예상 요금, 예약 오픈일, **텐트 설치형(장비 없이 가는 곳) 별도 표**
 
 ## 새 가이드 만드는 법
