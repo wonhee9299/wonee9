@@ -1,0 +1,12 @@
+# 조립 중간 파일과 결과물
+project/work/
+project/output.mp4
+
+# 사용자가 만든 이미지·클립·음성 (용량이 크므로 저장소에 올리지 않음)
+project/media/*
+project/audio/*
+!project/media/.gitkeep
+!project/audio/.gitkeep
+
+__pycache__/
+*.pyc

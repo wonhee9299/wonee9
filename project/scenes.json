@@ -1,0 +1,47 @@
+{
+  "title": "이 호수는 물을 담으려고 만든 게 아닙니다 (하루 15,000톤 침투)",
+  "hook_thumbnail_text": "조회수 터지는 공학 영상\n10분 만에 만드는 방법",
+  "voice": "ko-KR-InJoonNeural",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "도심 한가운데 있는 이 호수는, 사실 물을 담기 위한 게 아닙니다.",
+      "subtitle": "물을 담는 호수가 아니다?",
+      "image_prompt": "Scene: a 150 m wide artificial lake in the middle of a dense gray low-poly city, high-angle isometric view, cutaway below the lake showing layered soil, glowing cyan arrows pointing downward into the ground.",
+      "motion_prompt": "Slow push-in from wide city shot toward the lake.",
+      "note": ""
+    },
+    {
+      "id": 2,
+      "narration": "폭 150미터, 깊이 2.5미터. 바닥은 콘크리트가 아니라 구멍이 뚫린 흙층입니다.",
+      "subtitle": "폭 150m · 깊이 2.5m",
+      "image_prompt": "Scene: cross-section of the lake, dimension line across labeled \"150 m\", vertical dimension labeled \"2.5 m\", the lake bed is a sand-colored porous layer with many small dark holes.",
+      "motion_prompt": "Gentle orbit 15 degrees clockwise around the cross-section.",
+      "note": "치수는 추정"
+    },
+    {
+      "id": 3,
+      "narration": "비가 오면 호수에 모인 물이 하루 1만 5천 세제곱미터씩 땅속으로 스며듭니다.",
+      "subtitle": "하루 15,000㎥ 침투",
+      "image_prompt": "Scene: rain falling on the lake, dozens of glowing cyan arrows flowing down through the porous bed into a gray gravel layer, label \"15,000 m3 / day\".",
+      "motion_prompt": "Static camera; arrows pulse downward and the lake water level drops slowly.",
+      "note": "추정"
+    },
+    {
+      "id": 4,
+      "narration": "그 물은 지하 50미터 아래 대수층에 저장되어, 도시의 지하수가 됩니다.",
+      "subtitle": "지하 50m 대수층 저장",
+      "image_prompt": "Scene: deep cutaway showing a dark bedrock layer at 50 m depth with a glowing cyan aquifer, vertical dimension line labeled \"50 m\", arrows converging into the aquifer.",
+      "motion_prompt": "Camera tilts down from the lake into the underground layers.",
+      "note": ""
+    },
+    {
+      "id": 5,
+      "narration": "덕분에 같은 비에도 하수도로 몰리는 물이 40퍼센트 줄어듭니다. 이것이 침투형 저류지입니다.",
+      "subtitle": "하수도 부담 40%↓",
+      "image_prompt": "Scene: split comparison, left side a city block with overflowing storm drains and red arrows, right side the lake block with calm cyan arrows into the ground, label \"-40%\".",
+      "motion_prompt": "Slow lateral pan from left block to right block.",
+      "note": "비율은 추정"
+    }
+  ]
+}
