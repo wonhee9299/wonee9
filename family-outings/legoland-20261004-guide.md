@@ -1,5 +1,6 @@
 # 레고랜드 코리아 — 10월 4일(일) 방문 작전 가이드
 
+> **PDF**: [지도·케이스별 전체 시간표 포함 작전카드](./assets/legoland_20261004_guide.pdf) (7쪽, 인쇄/오프라인용)
 > 대상: 아빠 + 첫째(8세·130cm) + 둘째(3세 후반·101cm), 솔로대디·전기차·웨건 지참
 > 원자료: [park-legoland.md](./park-legoland.md) — 근거 등급은 `README.md`의 A/B/C/D 규칙
 > 지도: [전체 동선](./assets/legoland_route_final.png) · [캐슬 확대](./assets/legoland_detail_castle.png) · [시티 확대](./assets/legoland_detail_city.png) · [브릭토피아·브릭스트릿 확대](./assets/legoland_detail_bricktopia.png)
