@@ -36,7 +36,7 @@
 | Fire Academy | 90~110cm 동반, 110cm↑ 단독 |
 | LEGO® CITY Airport | 90~100cm 동반, 100cm↑ 단독 |
 | Junior Driving School | 95cm↑ 단독, **3~5세 전용** |
-| Driving School | 115cm↑ 단독 |
+| Driving School | 115cm↑ 단독, **"어린이 전용(For kids only)" 명시 — 보호자는 동승 불가로 보임** |
 | Coast Guard Academy | 90~130cm 동반, 130cm↑ 단독 |
 | Wave Racers | 100~130cm 동반, 130cm↑ 단독 |
 | LEGOLAND® Express | 110cm 미만 동반, 110cm↑ 단독 |
@@ -76,8 +76,8 @@
 ### Pirate Shores
 | 라이드 | 조건 |
 |---|---|
-| Splash Battle | 130cm 이하 동반 |
-| Anchors Aweigh | 105~130cm 동반, 130cm↑ 단독 |
+| Splash Battle | 130cm 미만 동반 |
+| Anchors Aweigh | 105~130cm 동반, 130cm 초과 단독 |
 | DUPLO Swabbies Deck, Treasure Hunt, Castaway Camp | 제한 없음 |
 
 ### 우리 가족 적용 결과
@@ -85,6 +85,17 @@
 - **둘째(101cm)**: Merlin's Challenge·Anchors Aweigh(105cm 미달)·Driving School(115cm 미달) 3개만 불가, 나머지는 보호자 동반 가능. **드래곤은 101cm로 여유 1cm 통과**
 - **함께 탈 수 있는 라이드 약 36개** — Wave Racers, Coast Guard Academy, NINJAGO The Ride, Merlin's Flying Machines, LEGOLAND Lookout, LEGO Factory Adventure Ride, 드래곤 등
 - Junior Driving School(3~5세)·Royal Joust(만4세↑)는 **정확한 만 나이 확인 필요** <D등급>
+
+### 🔵 10/3 재검증 — 공식 클러스터 페이지 6개 전부 재방문
+
+사용자 지적("브릭 파티" 오류) 이후, 위 표 전체를 공식 페이지(`legoland.kr/en/things-to-do/theme-park/cluster/*`) 6개 클러스터 각각 다시 열어서 하나하나 대조했다.
+
+| 확인 결과 | 내용 |
+|---|---|
+| **대체로 정확했음** | Bricktopia·LEGO Castle·NINJAGO World·Pirate Shores 신장조건은 공식 페이지와 전부 일치. **"Brick Party(회전목마) 110cm 미만 동반"도 이미 정확하게 적혀 있었다** — §11에서 이걸 "콘테스트"라고 다시 쓴 게 **같은 문서 안에서 자기모순**이었던 것 |
+| 정정 2건 | Splash Battle "130cm 이하"→**"130cm 미만"**(공식 표현), Driving School에 **"어린이 전용(For kids only)" 명시** 추가(보호자 동승 가정이 틀렸을 수 있음) |
+| **Treasure Hunt 재확인** | Pirate Shores 공식 클러스터 페이지에 **실제로 존재하는 어트랙션**("LEGO®는 우리의 보물!" 설명문). 예전에 "호텔 게임과 동명이인 의심"이라 적었던 불확실성 해소 — 파크 시설로 확정 | 
+| **클러스터 페이지가 전체를 안 보여줄 수 있음** | LEGO City 클러스터 페이지를 열었더니 **Wave Racers·Fire Academy가 아예 안 나왔다.** 둘 다 실제로는 운영 중(2026-06 뉴스로 재확인, Fire Academy 신장조건도 기존 기록과 일치) — **공식 페이지 자체가 불완전한 게 아니라 이 세션의 페이지 가져오기가 일부만 받아온 것으로 추정.** 교훈: 한 번의 페이지 요청 결과를 "거기 없으니 없는 것"으로 단정하면 안 됨 |
 
 ---
 
@@ -521,3 +532,4 @@ Yellow & Black Brick Contest의 **정확한 참가 방법**(사전 접수 필요
 - **Palace 4D Cinema 상영시간표·포토존 위치는 6회 이상 재검색 후 조사 불가로 최종 결론**
 - **10/2(금) 실제 방문 — 대기시간 실측 2건**: 사용자 제공 공식 앱 캡처(`assets/legoland_waittime_1002_1201.jpg` 12:01, `assets/legoland_waittime_1002_1633.jpg` 16:33), 사용자 현장 메모
 - **브릭 파티(라이드) 정체 확인, Yellow & Black Brick Contest 발견 — 공식 페이지** — `legoland.kr/en/things-to-do/seasonal-event/y26-brick-or-treat/` 원문, 나무위키 "브릭 파티" 항목
+- **§2 전수 재검증 — 공식 클러스터 페이지 6개** — `legoland.kr/en/things-to-do/theme-park/cluster/bricktopia/`, `/lego-castle/`, `/lego-ninjago-world/`, `/pirate-shores/`, `/lego-city/`, `/brick-street/` 전부 원문 직접 확인. Wave Racers·Fire Academy 운영 여부는 네이트뉴스 2026-06 보도(`m.news.nate.com/view/20260613n05269` 등), Coasterpedia로 교차 확인
